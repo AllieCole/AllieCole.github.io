@@ -1,18 +1,18 @@
 ---
-title: "ALLIE COLE"
-description: |
-  Hello! Welcome to my world 
+title: "Allie Cole"
+image: "allie.jpeg"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/allie-ingrid-cole-she-her-60351a1ba/"
+  - label: Twitter
+    url: "https://twitter.com/123alliec"
+  - label: GitHub
+    url: "https://github.com/AllieCole"
+  - label: Email
+    url: "icole@bren.ucsb.edu"
+output:
+  postcards::jolla
 site: distill::distill_website
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
-
-# Learn more about publishing to GitHub Pages at:
-# https://rstudio.github.io/distill/publish_website.html#github-pages
-
-```
-
+ 
+Hello! I am a trained marine scientist who loves to dive and explore the oceans. At the moment I am working at the Bren school to receive a masters in environmental data science. My previous research is in larval fish identification from the Central Pacific. 
