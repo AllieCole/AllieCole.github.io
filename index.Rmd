@@ -1,7 +1,7 @@
 ---
-title: "My Website"
+title: "ALLIE COLE"
 description: |
-  Welcome to the website. I hope you enjoy it!
+  Hello! Welcome to my world 
 site: distill::distill_website
 ---
 
