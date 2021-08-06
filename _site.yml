@@ -1,0 +1,12 @@
+name: "AllieCole.github.io"
+title: "My Website"
+description: |
+  My Website
+output_dir: "docs"
+navbar:
+  right:
+    - text: "apples"
+      href: index.html
+    - text: "Oranges"
+      href: about.html
+output: distill::distill_article
