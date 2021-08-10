@@ -1,7 +1,7 @@
 ---
-title: "My first blog post"
+title: "hi"
 description: |
-  A whole bunch of my important thoughts.
+  A short description of the post.
 author:
   - name: Allie Cole
 date: 08-10-2021
