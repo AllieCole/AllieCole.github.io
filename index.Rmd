@@ -1,6 +1,6 @@
 ---
 title: "Allie Cole"
-image: "allie.jpeg"
+image: "alliebees.jpg"
 links:
   - label: LinkedIn
     url: "https://www.linkedin.com/in/allie-ingrid-cole-she-her-60351a1ba/"
