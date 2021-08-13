@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-08-13-functions/",
+    "title": "Functions",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Allie Cole",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-13",
+    "categories": [],
+    "contents": "\nHere are some functions I learned!\n\n\n\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-08-13T08:54:23-07:00",
+    "input_file": "functions.knit.md"
+  },
+  {
     "path": "posts/2021-08-10-hi/",
     "title": "hi",
     "description": "A short description of the post.",
