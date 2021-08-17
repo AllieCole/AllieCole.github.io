@@ -8,10 +8,6 @@ links:
     url: "https://twitter.com/123alliec"
   - label: GitHub
     url: "https://github.com/AllieCole"
-  - label: Email
-    url: "icole@bren.ucsb.edu"
-output:
-  postcards::jolla
 site: distill::distill_website
 ---
  
