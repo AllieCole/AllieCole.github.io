@@ -10,4 +10,4 @@ navbar:
     - text: "Blog"
       href: blog.html
 output: distill::distill_article
-theme: my_theme.css
+theme: theme.css
