@@ -112,12 +112,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Uganda Education Statistics"]},{"type":"character","attributes":{},"value":["A short dive into the stastics surronding Primary and secondary education in Uganda"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Allie Cole"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["12-01-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Uganda Education Statistics"]},{"type":"character","attributes":{},"value":["A short dive into the stastics surronding Primary and secondary education in Uganda"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Allie Cole"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["12-01-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["hide"]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["uganda-education-statistics_files/anchor-4.2.2/anchor.min.js","uganda-education-statistics_files/bowser-1.9.3/bowser.min.js","uganda-education-statistics_files/distill-2.2.21/template.v2.js","uganda-education-statistics_files/header-attrs-2.10/header-attrs.js","uganda-education-statistics_files/jquery-1.11.3/jquery.min.js","uganda-education-statistics_files/popper-2.6.0/popper.min.js","uganda-education-statistics_files/tippy-6.2.7/tippy-bundle.umd.min.js","uganda-education-statistics_files/tippy-6.2.7/tippy-light-border.css","uganda-education-statistics_files/tippy-6.2.7/tippy.css","uganda-education-statistics_files/tippy-6.2.7/tippy.umd.min.js","uganda-education-statistics_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/Primary_13-16.csv","data/Secondary_GER_Rates.csv","data/Secondary_NER_Rates.csv","data/wfp_food_prices_uga.csv","uganda-education-statistics_files/anchor-4.2.2/anchor.min.js","uganda-education-statistics_files/bowser-1.9.3/bowser.min.js","uganda-education-statistics_files/distill-2.2.21/template.v2.js","uganda-education-statistics_files/figure-html5/unnamed-chunk-5-1.png","uganda-education-statistics_files/figure-html5/unnamed-chunk-6-1.png","uganda-education-statistics_files/figure-html5/unnamed-chunk-7-1.png","uganda-education-statistics_files/header-attrs-2.10/header-attrs.js","uganda-education-statistics_files/jquery-1.11.3/jquery.min.js","uganda-education-statistics_files/popper-2.6.0/popper.min.js","uganda-education-statistics_files/tippy-6.2.7/tippy-bundle.umd.min.js","uganda-education-statistics_files/tippy-6.2.7/tippy-light-border.css","uganda-education-statistics_files/tippy-6.2.7/tippy.css","uganda-education-statistics_files/tippy-6.2.7/tippy.umd.min.js","uganda-education-statistics_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2352,6 +2352,8 @@ d-appendix d-footnote-list a.footnote-backlink {
 }</style>
 <!--/radix_placeholder_distill-->
   <script src="../../site_libs/header-attrs-2.10/header-attrs.js"></script>
+  <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2408,9 +2410,643 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 
 <div class="d-article">
-<p>Distill is a publication format for scientific and technical writing, native to the web.</p>
-<p>Learn more about using Distill at <a href="https://rstudio.github.io/distill" class="uri">https://rstudio.github.io/distill</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="why-look-at-education-in-uganda">Why look at education in Uganda?</h2>
+<p>This blog post is a project for my EDS222, Intro to Statistics for Environmental Data Science. I will be diving into the statistics of Ugandan school age children, and seeing if there is an correlation between the district and how likely kids are to be enrolled in school. This project is very near to me as I spent over four years living in Africa, most of that time specifically in Uganda. I lived there because my mother founded a non-profit organization in Uganda in 200X called African Women Rising that aims to empower women after war through, literacy, business skills, girls education, and agriculture. I have grown up with this in mind, and seen first hand the disparity in education systems based on region in Uganda. So to say this has always been an interest of mine is a bit of an understatement.</p>
+<h3 id="first-an-introduction-to-the-situation-in-uganda.">First an introduction to the situation in Uganda.</h3>
+<p>Despite great gains in the fight against global poverty, sub-Saharan Africa is the only region consistently failing in these attempts. Across the continent indicators on hunger, displacement, access to health, food, income and education paint a troubling picture of the situation.</p>
+<p>One in four people across sub-Saharan Africa remain under nourished. 47% of the population lives on $1.90 or less. Lack of access to food, or capital to buy food, is the main cause. Conflict often interrupts people’s ability to earn an income or grow their own food. Environmental challenges such as erosion, desertification, deforestation, and most importantly, drought and water shortages keep people from building sustainable livelihoods. Climate change threatens the vulnerable in disproportionate ways.</p>
+<p>To make matters even more complicated, Sub-Saharan Africa holds more than 26% of the world’s refugee population, of which half are children.</p>
+<p>Hosting 3.7 million refugees and 11.4 internally displaced people overwhelms already strained economies. Sub-Saharan Africa accounts for 47% of out-of-school children worldwide. Only 30% of boys and 25% of girls are enrolled in secondary school, this number drops even lower when you focus of the more rural districts. Children are kept at home due to financial difficulties, lack of schools and teachers, poor sanitary facilities at schools, social norms, household obligations in the home, child labor and child marriages.</p>
+<p>Within Uganda specifically, there are over a million South Sudanese refugees that are crossing the border and living in Ugandan refugee camps, around 80% of these are women and children. With so many children coming into these camps, education is very difficult. It is not uncommon to see classrooms filled with multiple ages, grades and 200 students for every one teacher. My original hope for this project was to include data from these refugee camps, and compare it to the districts that do not have refugees.</p>
+<p>26% of the population live in urban settings and 74% live in rural settings.</p>
+<p>Knowing all of this, I was very interested in seeing if I could find some of the data myself and get similar results. I also wanted to see if there was a connection to food price and education. The rest of teh post will walk you through my steps and teh problems I encountered.</p>
+<h2 id="step-1--finding-my-data">Step 1- Finding my data</h2>
+<p>This step proved to be much harder than anticipated, my original thought was that I would be able to find at least some relevant data from one of the many organizations that does work in Uganda. However, while I did find some great info graphics, figures, and statistics, none of the bigger NGOs I was looking at had any raw data I could work with. I then went to World Bank Data, World Food Program, and The Uganda Bureau of Statistics. From these sites I was able to scrape together very minimal data.</p>
+<p>I was able to find four years of data (2013-2016) that looks at the total number of Ugandan children, split by gender, who attend grades Primary 1 through Primary 7 respectively. Primary 1 is the same as Kindergarten, Primary 2 as first grade, and so on. Then I found a data set that had the Gross Enrollment Rate (GER), and Net Enrollment Rate for Secondary school, separated by district.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Uganda Bureau of Stats </span>
+<span class='va'>ug_secondaryGER_raw</span> <span class='op'>&lt;-</span><span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'>here</span><span class='op'>(</span><span class='st'>"_posts"</span>, <span class='st'>"2021-12-01-uganda-education-statistics"</span>, <span class='st'>"data"</span>, <span class='st'>"Secondary_GER_Rates.csv"</span><span class='op'>)</span>, 
+                           na <span class='op'>=</span> <span class='st'>"-"</span>, 
+                           col_types <span class='op'>=</span> <span class='fu'>cols</span><span class='op'>(</span>`2012` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span>, 
+                                            `2013` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span>, 
+                                            `2014` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span>, 
+                                            `2015` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span>, 
+                                            `2016` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span>,
+                                            `2017` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>pivot_longer</span><span class='op'>(</span><span class='op'>!</span><span class='va'>District</span>, names_to <span class='op'>=</span> <span class='st'>"Years"</span>, values_to <span class='op'>=</span> <span class='st'>"GER"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span>
+      <span class='va'>District</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Abim"</span>,<span class='st'>"Adjumani"</span>, <span class='st'>"Agago"</span>, <span class='st'>"Alebtong"</span>, <span class='st'>"Amolatar"</span>, <span class='st'>"Amudat"</span>, <span class='st'>"Amuru"</span>, <span class='st'>"Apac"</span>, <span class='st'>"Arua"</span>, <span class='st'>"Dokolo"</span>, <span class='st'>"Gulu"</span>, <span class='st'>"Kaabong"</span>, <span class='st'>"Kitgum"</span>, <span class='st'>"Koboko"</span>  , <span class='st'>"Kole"</span>,   <span class='st'>"Kotido"</span>, <span class='st'>"Lamwo"</span>,  <span class='st'>"Lira"</span>, <span class='st'>"Maracha"</span>,  <span class='st'>"Moroto"</span>, <span class='st'>"Moyo"</span>,  <span class='st'>"Nakapiripirit"</span>, <span class='st'>"Napak"</span>,  <span class='st'>"Nebbi"</span>, <span class='st'>"Nwoya"</span>,  <span class='st'>"Otuke"</span>, <span class='st'>"Oyam"</span>,  <span class='st'>"Pader"</span>,  <span class='st'>"Yumbe"</span>,  <span class='st'>"Zombo"</span><span class='op'>)</span>  <span class='op'>~</span> <span class='st'>"Northern"</span>, 
+      
+      <span class='va'>District</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Buikwe"</span>, <span class='st'>"Bukomansimbi"</span>, <span class='st'>"Butambala"</span>, <span class='st'>"Buvuma"</span>, <span class='st'>"Gomba"</span>, <span class='st'>"Kalangala"</span>, <span class='st'>"Kalungu"</span>, <span class='st'>"Kampala"</span>, <span class='st'>"Kasanda"</span>, <span class='st'>"Kayunga"</span>, <span class='st'>"Kiboga"</span>, <span class='st'>"Kyankwanzi"</span>, <span class='st'>"Kyotera"</span>, <span class='st'>"Luweero"</span>, <span class='st'>"Lwengo"</span>, <span class='st'>"Lyantonde"</span>, <span class='st'>"Masaka"</span>, <span class='st'>"Mityana"</span>, <span class='st'>"Mpigi"</span>, <span class='st'>"Mubende"</span>, <span class='st'>"Mukono"</span>, <span class='st'>"Nakaseke"</span>, <span class='st'>"Nakasongola"</span>, <span class='st'>"Rakai"</span>, <span class='st'>"Sembabule"</span>, <span class='st'>"Wakiso"</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"Central"</span>,
+      <span class='va'>District</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Amuria"</span>, <span class='st'>"Budaka"</span>, <span class='st'>"Bududa"</span>, <span class='st'>"Bugiri"</span>, <span class='st'>"Bugweri"</span>, <span class='st'>"Bukedea"</span>, <span class='st'>"Bukwo"</span>, <span class='st'>"Bulambuli"</span>,   <span class='st'>"Busia"</span>,       <span class='st'>"Butaleja"</span>,    <span class='st'>"Butebo"</span> ,    <span class='st'>"Buyende"</span>  ,   <span class='st'>"Iganga"</span>  ,    <span class='st'>"Jinja"</span>  ,<span class='st'>"Kaberamaido"</span>, <span class='st'>"Kaliro"</span>  ,    <span class='st'>"Kamuli"</span> ,     <span class='st'>"Kapchorwa"</span>  , <span class='st'>"Kapelebyong"</span> ,<span class='st'>"Katakwi"</span>  ,   <span class='st'>"Kibuku"</span>, <span class='st'>"Kumim"</span>,       <span class='st'>"Kween"</span> ,      <span class='st'>"Luuka"</span>,       <span class='st'>"Manafwa"</span> ,    <span class='st'>"Mayuge"</span>,      <span class='st'>"Mbale"</span>,       <span class='st'>"Namayingo"</span>, <span class='st'>"Namisindwa"</span>,  <span class='st'>"Namutumba"</span> ,  <span class='st'>"Ngora"</span> ,      <span class='st'>"Pallisa"</span> ,    <span class='st'>"Serere"</span> ,     <span class='st'>"Sironko"</span> ,    <span class='st'>"Soroti"</span> ,<span class='st'>"Tororo"</span> <span class='op'>)</span> <span class='op'>~</span> <span class='st'>"Eastern"</span>, 
+      <span class='va'>District</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Buhweju"</span>, <span class='st'>"Buliisa"</span>,<span class='st'>"Bundibugyo"</span>,<span class='st'>"Bunyangabu"</span>,<span class='st'>"Bushenyi"</span>,<span class='st'>"Hoima"</span> ,<span class='st'>"Ibanda"</span>,
+                      <span class='st'>"Isingiro"</span> ,<span class='st'>"Kabale"</span> , <span class='st'>"Kabarole"</span> ,<span class='st'>"Kagadi"</span> ,<span class='st'>"Kakumiro"</span> ,<span class='st'>"Kamwenge"</span>,<span class='st'>"Kanungu"</span>,
+                      <span class='st'>"Kasese"</span> ,<span class='st'>"Kazo"</span>, <span class='st'>"Kibaale"</span>,<span class='st'>"Kikuube"</span> ,<span class='st'>"Kiruhura"</span>,<span class='st'>"Kiryandongo"</span>, <span class='st'>"Kisoro"</span>, <span class='st'>"Kitagwenda"</span>,  <span class='st'>"Kyegegwa"</span>, <span class='st'>"Kyenjojo"</span>, <span class='st'>"Masindi"</span> ,<span class='st'>"Mbarara"</span>,<span class='st'>"Mitooma"</span>,<span class='st'>"Ntoroko"</span> , <span class='st'>"Ntungamo"</span> ,   <span class='st'>"Rubanda"</span>  ,   <span class='st'>"Rubirizi"</span> ,   <span class='st'>"Rukiga"</span> ,     <span class='st'>"Rukungiri"</span> ,  <span class='st'>"Rwampara"</span> ,   <span class='st'>"Sheema"</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"Western"</span><span class='op'>)</span><span class='op'>)</span>
+
+
+<span class='co'>#trying to get years into a date</span>
+
+<span class='va'>ug_secondaryGER</span> <span class='op'>&lt;-</span> <span class='va'>ug_secondaryGER_raw</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>Years <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>Years</span>, format <span class='op'>=</span> <span class='st'>"%Y"</span><span class='op'>)</span><span class='op'>)</span>
+
+
+
+
+
+<span class='va'>ug_secondaryNER_raw</span> <span class='op'>&lt;-</span><span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'>here</span><span class='op'>(</span><span class='st'>"_posts"</span>, <span class='st'>"2021-12-01-uganda-education-statistics"</span>, <span class='st'>"data"</span>, <span class='st'>"Secondary_NER_Rates.csv"</span><span class='op'>)</span>, 
+                           na <span class='op'>=</span> <span class='st'>"-"</span>, 
+                           col_types <span class='op'>=</span> <span class='fu'>cols</span><span class='op'>(</span>`2012` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span>, 
+                                            `2013` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span>, 
+                                            `2014` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span>, 
+                                            `2015` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span>, 
+                                            `2016` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span>,
+                                            `2017` <span class='op'>=</span> <span class='fu'>col_number</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>pivot_longer</span><span class='op'>(</span><span class='op'>!</span><span class='va'>District</span>, names_to <span class='op'>=</span> <span class='st'>"Years"</span>, values_to <span class='op'>=</span> <span class='st'>"NER"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span>
+      <span class='va'>District</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Abim"</span>,<span class='st'>"Adjumani"</span>, <span class='st'>"Agago"</span>, <span class='st'>"Alebtong"</span>, <span class='st'>"Amolatar"</span>, <span class='st'>"Amudat"</span>, <span class='st'>"Amuru"</span>, <span class='st'>"Apac"</span>, <span class='st'>"Arua"</span>, <span class='st'>"Dokolo"</span>, <span class='st'>"Gulu"</span>, <span class='st'>"Kaabong"</span>, <span class='st'>"Kitgum"</span>, <span class='st'>"Koboko"</span>  , <span class='st'>"Kole"</span>,   <span class='st'>"Kotido"</span>, <span class='st'>"Lamwo"</span>,  <span class='st'>"Lira"</span>, <span class='st'>"Maracha"</span>,  <span class='st'>"Moroto"</span>, <span class='st'>"Moyo"</span>,  <span class='st'>"Nakapiripirit"</span>, <span class='st'>"Napak"</span>,  <span class='st'>"Nebbi"</span>, <span class='st'>"Nwoya"</span>,  <span class='st'>"Otuke"</span>, <span class='st'>"Oyam"</span>,  <span class='st'>"Pader"</span>,  <span class='st'>"Yumbe"</span>,  <span class='st'>"Zombo"</span><span class='op'>)</span>  <span class='op'>~</span> <span class='st'>"Northern"</span>, 
+      
+      <span class='va'>District</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Buikwe"</span>, <span class='st'>"Bukomansimbi"</span>, <span class='st'>"Butambala"</span>, <span class='st'>"Buvuma"</span>, <span class='st'>"Gomba"</span>, <span class='st'>"Kalangala"</span>, <span class='st'>"Kalungu"</span>, <span class='st'>"Kampala"</span>, <span class='st'>"Kasanda"</span>, <span class='st'>"Kayunga"</span>, <span class='st'>"Kiboga"</span>, <span class='st'>"Kyankwanzi"</span>, <span class='st'>"Kyotera"</span>, <span class='st'>"Luweero"</span>, <span class='st'>"Lwengo"</span>, <span class='st'>"Lyantonde"</span>, <span class='st'>"Masaka"</span>, <span class='st'>"Mityana"</span>, <span class='st'>"Mpigi"</span>, <span class='st'>"Mubende"</span>, <span class='st'>"Mukono"</span>, <span class='st'>"Nakaseke"</span>, <span class='st'>"Nakasongola"</span>, <span class='st'>"Rakai"</span>, <span class='st'>"Sembabule"</span>, <span class='st'>"Wakiso"</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"Central"</span>,
+      <span class='va'>District</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Amuria"</span>, <span class='st'>"Budaka"</span>, <span class='st'>"Bududa"</span>, <span class='st'>"Bugiri"</span>, <span class='st'>"Bugweri"</span>, <span class='st'>"Bukedea"</span>, <span class='st'>"Bukwo"</span>, <span class='st'>"Bulambuli"</span>,   <span class='st'>"Busia"</span>,       <span class='st'>"Butaleja"</span>,    <span class='st'>"Butebo"</span> ,    <span class='st'>"Buyende"</span>  ,   <span class='st'>"Iganga"</span>  ,    <span class='st'>"Jinja"</span>  ,<span class='st'>"Kaberamaido"</span>, <span class='st'>"Kaliro"</span>  ,    <span class='st'>"Kamuli"</span> ,     <span class='st'>"Kapchorwa"</span>  , <span class='st'>"Kapelebyong"</span> ,<span class='st'>"Katakwi"</span>  ,   <span class='st'>"Kibuku"</span>, <span class='st'>"Kumim"</span>,       <span class='st'>"Kween"</span> ,      <span class='st'>"Luuka"</span>,       <span class='st'>"Manafwa"</span> ,    <span class='st'>"Mayuge"</span>,      <span class='st'>"Mbale"</span>,       <span class='st'>"Namayingo"</span>, <span class='st'>"Namisindwa"</span>,  <span class='st'>"Namutumba"</span> ,  <span class='st'>"Ngora"</span> ,      <span class='st'>"Pallisa"</span> ,    <span class='st'>"Serere"</span> ,     <span class='st'>"Sironko"</span> ,    <span class='st'>"Soroti"</span> ,<span class='st'>"Tororo"</span> <span class='op'>)</span> <span class='op'>~</span> <span class='st'>"Eastern"</span>, 
+      <span class='va'>District</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Buhweju"</span>, <span class='st'>"Buliisa"</span>,<span class='st'>"Bundibugyo"</span>,<span class='st'>"Bunyangabu"</span>,<span class='st'>"Bushenyi"</span>,<span class='st'>"Hoima"</span> ,<span class='st'>"Ibanda"</span>,
+                      <span class='st'>"Isingiro"</span> ,<span class='st'>"Kabale"</span> , <span class='st'>"Kabarole"</span> ,<span class='st'>"Kagadi"</span> ,<span class='st'>"Kakumiro"</span> ,<span class='st'>"Kamwenge"</span>,<span class='st'>"Kanungu"</span>,
+                      <span class='st'>"Kasese"</span> ,<span class='st'>"Kazo"</span>, <span class='st'>"Kibaale"</span>,<span class='st'>"Kikuube"</span> ,<span class='st'>"Kiruhura"</span>,<span class='st'>"Kiryandongo"</span>, <span class='st'>"Kisoro"</span>, <span class='st'>"Kitagwenda"</span>,  <span class='st'>"Kyegegwa"</span>, <span class='st'>"Kyenjojo"</span>, <span class='st'>"Masindi"</span> ,<span class='st'>"Mbarara"</span>,<span class='st'>"Mitooma"</span>,<span class='st'>"Ntoroko"</span> , <span class='st'>"Ntungamo"</span> ,   <span class='st'>"Rubanda"</span>  ,   <span class='st'>"Rubirizi"</span> ,   <span class='st'>"Rukiga"</span> ,     <span class='st'>"Rukungiri"</span> ,  <span class='st'>"Rwampara"</span> ,   <span class='st'>"Sheema"</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"Western"</span><span class='op'>)</span><span class='op'>)</span>
+
+
+<span class='co'>#trying to get years into a date</span>
+
+<span class='va'>ug_secondaryNER</span> <span class='op'>&lt;-</span> <span class='va'>ug_secondaryNER_raw</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>Years <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>Years</span>, format <span class='op'>=</span> <span class='st'>"%Y"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#primary school aged kids </span>
+<span class='va'>primary</span> <span class='op'>&lt;-</span><span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'>here</span><span class='op'>(</span><span class='st'>"_posts"</span>, <span class='st'>"2021-12-01-uganda-education-statistics"</span>, <span class='st'>"data"</span>, <span class='st'>"Primary_13-16.csv"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#World Food Program Data</span>
+</code></pre>
+</div>
+</details>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#combining datasets </span>
+</code></pre>
+</div>
+</details>
+</div>
+<h3 id="second-step-visualizing-the-data">Second Step, Visualizing the Data</h3>
+<p>Now that I found some data, I wanted to load it in R and run some very basic visualizations to see if there were any apparent trends</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># plotting the Primary school data</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>primary</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Year</span>, y <span class='op'>=</span> <span class='va'>Number</span>, col <span class='op'>=</span> <span class='va'>Schooling</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_y_log10</span><span class='op'>(</span>
+    <span class='st'>"Total students enrolled"</span>,
+    labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/label_number_si.html'>label_number_si</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+   <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Year"</span>,
+       y <span class='op'>=</span> <span class='st'>"Total students enrolled"</span>,
+       title <span class='op'>=</span> <span class='st'>"Uganda Primary School Enrollment by Year"</span>, 
+       caption <span class='op'>=</span> <span class='st'>"Total enrollment rate for Primary 1 - Primary 7 (Kindergarten through 6th grade) for all of Uganda. There is a general decrease in enrollment as grade level increases"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="uganda-education-statistics_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<p>This figure shows us the total enrollment rate for P1-P7 (Kindergarten through 6th grade) for Uganda. The general trend shows that as the grade level increases there is a decrease in the total number of students enrolled. This is consistent with trends in the literature, where in many districts as children grow older they are expected to stay home and work or take care of children. The literature states that this is even more apparent for girls. The main barrier for sending children to school is poverty, as parents are not able to afford to pay for school fees. However, even in families where funds are available girls still fail to advance academically. Girls are expected to help with household chores and their irregular attendance at school leads to a failure in passing year-end exams. Not passing means they are held back and must repeat a grade. Once a girl starts menstruating lack of access to menstrual pads can lead to more days missed and before long many girls drop out completely. With few other options the trend is for girls to marry early and have children at a young age. These children are in turn less likely to complete primary education and the perpetuation of the issue continues.</p>
+<p>The next two visualization plots show the Enrollment Rate in Secondary school by region.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>ug_secondaryNER</span>, <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>region</span><span class='op'>)</span><span class='op'>)</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Years</span>, y <span class='op'>=</span> <span class='va'>NER</span>, col <span class='op'>=</span> <span class='va'>region</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+   <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Year"</span>,
+       y <span class='op'>=</span> <span class='st'>"Net Enrollment Rate"</span>,
+       title <span class='op'>=</span> <span class='st'>"Rate of Secondary School Enrollment by Region"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="uganda-education-statistics_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<p>First we have the Net Enrollment rate, The NER is the number of students of the theoretical school-age group for a given level of education, expressed as a percentage of the total population in that age group. The theoretical maximum value is 100%. However, Net Enrollment Rates may exceed 100% due to inconsistencies between population and enrollment data, this can been seen in our 2017 data, where one district in the Northern region is slightly over 100.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Gross enrollment</span>
+
+<span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>ug_secondaryGER</span>, <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>region</span><span class='op'>)</span><span class='op'>)</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Years</span>, y <span class='op'>=</span> <span class='va'>GER</span>, col <span class='op'>=</span> <span class='va'>region</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+   <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Year"</span>,
+       y <span class='op'>=</span> <span class='st'>"Gross Enrollment Rate"</span>,
+       title <span class='op'>=</span> <span class='st'>"Rate of Secondary School Enrollment by Region"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="uganda-education-statistics_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+</div>
+<p>The Gross Enrollment Rate is the number of pupils enrolled in a given level of education, regardless of age, expressed as a percentage of the population in the theoretical age group for the same level of education. When compared next to the NER, we can see how the difference between the two ratios highlights the incidence of under-aged and over-aged enrollment. While the pattern seems to have stayed very similar between the two plots, we can see that for the GER plot the y axis has increased, now it seems there are more students enrolled in each district. But as mentioned above this takes into account any students who are repeating a grade, younger than the average, or older than the average. As many students get pulled out of school for various reasons there is a trend of not passing teh end of year exams that allow them to continue on. Without proper interference this trend can form a viscous cycle, where students are held back for multiple years, and then ultimately taken out of school because their parents do not see the return on the investment of sending them. They are more valuable for the parent at home.</p>
+<p>The second main trend we can see here is that the Northen region is much lower than</p>
+<h3 id="now-we-can-start-to-look-at-some-models">Now we can start to look at some models</h3>
+<p>First I wanted to know how strong the visual trend of school enrollment by district was. To do this</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#will district have an affect on number of children who attend school?</span>
+
+ <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>GER</span> <span class='op'>~</span> <span class='va'>region</span>, data <span class='op'>=</span> <span class='va'>ug_secondaryGER</span><span class='op'>)</span>  <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>xtable</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Think Of a Captaion"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>kable_styling</span><span class='op'>(</span>latex_options <span class='op'>=</span> <span class='st'>"HOLD_position"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-8">Table 1: </span>Think Of a Captaion
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+31.7143
+</td>
+<td style="text-align:right;">
+1.1355
+</td>
+<td style="text-align:right;">
+27.9293
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+regionEastern
+</td>
+<td style="text-align:right;">
+2.6687
+</td>
+<td style="text-align:right;">
+1.4838
+</td>
+<td style="text-align:right;">
+1.7986
+</td>
+<td style="text-align:right;">
+0.0725
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+regionNorthern
+</td>
+<td style="text-align:right;">
+-17.0810
+</td>
+<td style="text-align:right;">
+1.4974
+</td>
+<td style="text-align:right;">
+-11.4073
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+regionWestern
+</td>
+<td style="text-align:right;">
+-4.5901
+</td>
+<td style="text-align:right;">
+1.5345
+</td>
+<td style="text-align:right;">
+-2.9913
+</td>
+<td style="text-align:right;">
+0.0029
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Now i wanted to see if year has an effect, as we woudl hope that as time goes on, the enrollment increases (CAN THIS BE ONE MODEL)</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>GER</span> <span class='op'>~</span> <span class='va'>Years</span>, data <span class='op'>=</span> <span class='va'>ug_secondaryGER</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<pre><code>
+Call:
+lm(formula = GER ~ Years, data = ug_secondaryGER)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-27.368 -11.066  -2.218   8.934  88.934 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 53.0676489 15.4355667   3.438 0.000622 ***
+Years       -0.0015756  0.0009291  -1.696 0.090361 .  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 15.26 on 680 degrees of freedom
+  (68 observations deleted due to missingness)
+Multiple R-squared:  0.004212,  Adjusted R-squared:  0.002747 
+F-statistic: 2.876 on 1 and 680 DF,  p-value: 0.09036</code></pre>
+</div>
+<p>Then we do it again for the NER just to be safe</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>NER</span> <span class='op'>~</span> <span class='va'>region</span>, data <span class='op'>=</span> <span class='va'>ug_secondaryNER</span><span class='op'>)</span>  <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>xtable</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Think Of a Captaion"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>kable_styling</span><span class='op'>(</span>latex_options <span class='op'>=</span> <span class='st'>"HOLD_position"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-10">Table 2: </span>Think Of a Captaion
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+28.9248
+</td>
+<td style="text-align:right;">
+1.0198
+</td>
+<td style="text-align:right;">
+28.3624
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+regionEastern
+</td>
+<td style="text-align:right;">
+1.4316
+</td>
+<td style="text-align:right;">
+1.3326
+</td>
+<td style="text-align:right;">
+1.0743
+</td>
+<td style="text-align:right;">
+0.2831
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+regionNorthern
+</td>
+<td style="text-align:right;">
+-16.3193
+</td>
+<td style="text-align:right;">
+1.3448
+</td>
+<td style="text-align:right;">
+-12.1349
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+regionWestern
+</td>
+<td style="text-align:right;">
+-5.3658
+</td>
+<td style="text-align:right;">
+1.3781
+</td>
+<td style="text-align:right;">
+-3.8936
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>NER</span> <span class='op'>~</span> <span class='va'>Years</span>, data <span class='op'>=</span> <span class='va'>ug_secondaryNER</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<pre><code>
+Call:
+lm(formula = NER ~ Years, data = ug_secondaryNER)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-23.721 -10.148  -1.721   8.035  77.791 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept) 40.9376975 13.9426828   2.936  0.00344 **
+Years       -0.0010345  0.0008392  -1.233  0.21810   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 13.78 on 680 degrees of freedom
+  (68 observations deleted due to missingness)
+Multiple R-squared:  0.00223,   Adjusted R-squared:  0.0007624 
+F-statistic:  1.52 on 1 and 680 DF,  p-value: 0.2181</code></pre>
+</div>
+<p>NOw we cna look at our primary school data</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Number</span> <span class='op'>~</span> <span class='va'>Sex</span> <span class='op'>+</span> <span class='va'>Schooling</span>, data <span class='op'>=</span> <span class='va'>primary</span><span class='op'>)</span>  <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>xtable</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Think Of a Captaion"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-12">Table 3: </span>Think Of a Captaion
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+945615.9
+</td>
+<td style="text-align:right;">
+6335.841
+</td>
+<td style="text-align:right;">
+149.2487
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SexMale
+</td>
+<td style="text-align:right;">
+-4445.5
+</td>
+<td style="text-align:right;">
+4480.116
+</td>
+<td style="text-align:right;">
+-0.9923
+</td>
+<td style="text-align:right;">
+0.326
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP2
+</td>
+<td style="text-align:right;">
+-282412.5
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-33.6946
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP3
+</td>
+<td style="text-align:right;">
+-279910.0
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-33.3961
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP4
+</td>
+<td style="text-align:right;">
+-283728.1
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-33.8516
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP5
+</td>
+<td style="text-align:right;">
+-371490.0
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-44.3225
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP6
+</td>
+<td style="text-align:right;">
+-475472.5
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-56.7286
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP7
+</td>
+<td style="text-align:right;">
+-641661.8
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-76.5566
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>males are less likey to be enrolled, there is a significant difference in the enromelnt between grade levels</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
