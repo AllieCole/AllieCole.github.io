@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-12-01-uganda-education-statistics/",
+    "title": "Uganda Education Statistics",
+    "description": "A short dive into the stastics surronding Primary and secondary education in Uganda",
+    "author": [
+      {
+        "name": "Allie Cole",
+        "url": {}
+      }
+    ],
+    "date": "2021-12-01",
+    "categories": [],
+    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-12-01T19:16:32-08:00",
+    "input_file": "uganda-education-statistics.knit.md"
+  },
+  {
     "path": "posts/2021-08-16-tidyverse-cleaning/",
     "title": "Tidyverse Cleaning",
     "description": "A few helpful functions from the Tidyverse",

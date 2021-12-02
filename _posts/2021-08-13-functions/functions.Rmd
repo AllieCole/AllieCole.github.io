@@ -1,7 +1,7 @@
 ---
 title: "Functions"
 description: |
-  A short description of the post.
+  hahahdh
 author:
   - name: Allie Cole
     url: {}
@@ -24,11 +24,5 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-
-
-
-Distill is a publication format for scientific and technical writing, native to the web.
-
-Learn more about using Distill at <https://rstudio.github.io/distill>.
 
 

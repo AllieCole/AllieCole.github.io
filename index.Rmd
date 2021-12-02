@@ -9,6 +9,8 @@ links:
   - label: GitHub
     url: "https://github.com/AllieCole"
 site: distill::distill_website
+output:
+  postcards::jolla
 ---
  
   Hello! My name is Allie Cole (she/her), and I am a marine scientist who loves to dive and explore the oceans. I graduated from Boston University in 2021 with a bachelor’s degree in Marine Science. At BU, my research was exploring how larval fish distributions are changing with climate patterns. I taught a team of eight students how to identify larval fish and plankton and worked with multiple international collaborators. I was the recipient of the Lara Vincent Undergraduate Research Award for this research. You can see a summary video of the data collection [here](https://www.bu.edu/articles/2019/phoenix-islands-fieldwork-vlog/). Analysis of this data led me to UCSB’s Bren School of Environmental Sciences and Management, where I am currently working towards a Masters in Environmental Data Science. 
