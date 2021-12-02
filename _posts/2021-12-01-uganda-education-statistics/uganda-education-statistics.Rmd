@@ -212,7 +212,8 @@ First I wanted to look at the Primary school data, to answer my first question, 
  lm(Number ~ Schooling, data = primary)  %>% 
   summary() %>% 
   xtable() %>% 
-  kable(caption = "Effect of Grade level on total Enrollment", digits = 4)
+  kable(caption = "Effect of Grade level on total Enrollment", digits = 4) %>% 
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 For every year there was a significant decrease in the number of students enrolled, holding all other grade levels constant. The intercept here is Kindergarten, Where you start with an average of 943393 kids enrolled, and then as you increase by one year you can see that enrollment rates drop as you hold each grade level constant, at a decreasing rate. The adjusted r-squared value for this is 99%, which states that or model is explaining a lot of the data, however I am skeptical as this is a very small data set and I know there has to be more effecting the total enrollment, not just the grade level. 
@@ -224,11 +225,13 @@ To take this a step further and start looking at my second question, are there d
 lm(Number ~ Schooling + Sex, data = primary)  %>% 
   summary() %>% 
   xtable() %>% 
-  kable(caption = "Effect of Grade level on total Enrollment", digits = 4)
+  kable(caption = "Effect of Grade level on total Enrollment", digits = 4) %>% 
+  kable_styling(latex_options = "HOLD_position")
 ```
+
 When looking at the results, we can see that there is a decrease in the intercept by almost 4,500 students every year, if you are male. This was not what I was expecting to see, as in many of my specific districts of interest this is the opposite case. However, there are two things I believe to be influencing this. The first is that this is a very small sample size, and the second is that this is data for Uganda as a whole, so some of the nuances I was hoping to look at are not available. This is also not a statically significant finding, as we fail to reject the null hypothesis that sex has no effect on schooling, as our p-value is 0.326. 
 
-Now that I knew that there are less children enrolled in the higher grade levels, I wanted to look at enrollment by district. As a reminder, the data I was able to find for this is the Gross and Net enrollment rate for secondary school (grades seven, eight, and nine) across districts. 
+Now that I knew that there are less children enrolled in the higher grade levels, I wanted to look at enrollment by district. As a reminder, the data I was able to find for this is the Gross and Net enrollment rate for secondary school (grades seven, eight, and nine) across all districts. 
 
 ```{r}
 #will district have an affect on number of children who attend school?
@@ -240,36 +243,23 @@ Now that I knew that there are less children enrolled in the higher grade levels
   kable_styling(latex_options = "HOLD_position")
 ```
 
+As seen in the table above, every district has a significant change in the enrollment rate compared to the other regions, except for the Eastern region. 
 
-Now i wanted to see if year has an effect, as we woudl hope that as time goes on, the enrollment increases 
-(CAN THIS BE ONE MODEL)
+I also wanted to see if year has an effect on enrollment, as we would hope that as time goes on, the overall enrollment rates increase. We we add in the year variable to the model there seems to be a slight downward trend that is almost statically significant. However, not enough to have a concrete answer. If there were more data points I would have higher confidence but considering the data, I do not want to make any broad statements. 
 
-```{r}
-lm(GER ~ Years, data = ug_secondaryGER) %>% 
-  summary()
-```
-
-Then we do it again for the NER just to be safe 
+Then I decided run all the models again for the NER just to be safe, and to see if there was a difference. 
 
 ```{r}
- lm(NER ~ region, data = ug_secondaryNER)  %>%
+ lm(NER ~ region + Years, data = ug_secondaryNER)  %>%
   summary() %>% 
   xtable() %>% 
   kable(caption = "Think Of a Captaion", digits = 4) %>% 
   kable_styling(latex_options = "HOLD_position")
 ```
 
+There was no real difference between the trend in GER and NER, they are both quite consistent. 
 
-```{r}
-lm(NER ~ Years, data = ug_secondaryNER) %>% 
-  summary()
-```
-
-
-NOw we cna look at our primary school data
-
-
-males are less likey to be enrolled, there is a significant difference in the enromelnt between grade levels 
+Our big takeways from these 
 
 
 

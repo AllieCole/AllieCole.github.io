@@ -1704,11 +1704,12 @@ hide
 <pre class="sourceCode r"><code class="sourceCode r"> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Number</span> <span class='op'>~</span> <span class='va'>Schooling</span>, data <span class='op'>=</span> <span class='va'>primary</span><span class='op'>)</span>  <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>xtable</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Effect of Grade level on total Enrollment"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Effect of Grade level on total Enrollment"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>kable_styling</span><span class='op'>(</span>latex_options <span class='op'>=</span> <span class='st'>"HOLD_position"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </details>
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-9">Table 1: </span>Effect of Grade level on total Enrollment
 </caption>
@@ -1864,11 +1865,12 @@ hide
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Number</span> <span class='op'>~</span> <span class='va'>Schooling</span> <span class='op'>+</span> <span class='va'>Sex</span>, data <span class='op'>=</span> <span class='va'>primary</span><span class='op'>)</span>  <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>xtable</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Effect of Grade level on total Enrollment"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Effect of Grade level on total Enrollment"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>kable_styling</span><span class='op'>(</span>latex_options <span class='op'>=</span> <span class='st'>"HOLD_position"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </details>
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-10">Table 2: </span>Effect of Grade level on total Enrollment
 </caption>
@@ -2031,7 +2033,7 @@ SexMale
 </table>
 </div>
 <p>When looking at the results, we can see that there is a decrease in the intercept by almost 4,500 students every year, if you are male. This was not what I was expecting to see, as in many of my specific districts of interest this is the opposite case. However, there are two things I believe to be influencing this. The first is that this is a very small sample size, and the second is that this is data for Uganda as a whole, so some of the nuances I was hoping to look at are not available. This is also not a statically significant finding, as we fail to reject the null hypothesis that sex has no effect on schooling, as our p-value is 0.326.</p>
-<p>Now that I knew that there are less children enrolled in the higher grade levels, I wanted to look at enrollment by district. As a reminder, the data I was able to find for this is the Gross and Net enrollment rate for secondary school (grades seven, eight, and nine) across districts.</p>
+<p>Now that I knew that there are less children enrolled in the higher grade levels, I wanted to look at enrollment by district. As a reminder, the data I was able to find for this is the Gross and Net enrollment rate for secondary school (grades seven, eight, and nine) across all districts.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
@@ -2159,46 +2161,16 @@ Years
 </tbody>
 </table>
 </div>
-<p>Now i wanted to see if year has an effect, as we woudl hope that as time goes on, the enrollment increases (CAN THIS BE ONE MODEL)</p>
+<p>As seen in the table above, every district has a significant change in the enrollment rate compared to the other regions, except for the Eastern region.</p>
+<p>I also wanted to see if year has an effect on enrollment, as we would hope that as time goes on, the overall enrollment rates increase. We we add in the year variable to the model there seems to be a slight downward trend that is almost statically significant. However, not enough to have a concrete answer. If there were more data points I would have higher confidence but considering the data, I do not want to make any broad statements.</p>
+<p>Then I decided run all the models again for the NER just to be safe, and to see if there was a difference.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
 hide
 </summary>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>GER</span> <span class='op'>~</span> <span class='va'>Years</span>, data <span class='op'>=</span> <span class='va'>ug_secondaryGER</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
-<pre><code>
-Call:
-lm(formula = GER ~ Years, data = ug_secondaryGER)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--27.368 -11.066  -2.218   8.934  88.934 
-
-Coefficients:
-              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 53.0676489 15.4355667   3.438 0.000622 ***
-Years       -0.0015756  0.0009291  -1.696 0.090361 .  
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 15.26 on 680 degrees of freedom
-  (68 observations deleted due to missingness)
-Multiple R-squared:  0.004212,  Adjusted R-squared:  0.002747 
-F-statistic: 2.876 on 1 and 680 DF,  p-value: 0.09036</code></pre>
-</div>
-<p>Then we do it again for the NER just to be safe</p>
-<div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-hide
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>NER</span> <span class='op'>~</span> <span class='va'>region</span>, data <span class='op'>=</span> <span class='va'>ug_secondaryNER</span><span class='op'>)</span>  <span class='op'>%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r"> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>NER</span> <span class='op'>~</span> <span class='va'>region</span> <span class='op'>+</span> <span class='va'>Years</span>, data <span class='op'>=</span> <span class='va'>ug_secondaryNER</span><span class='op'>)</span>  <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>xtable</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Think Of a Captaion"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
@@ -2208,7 +2180,7 @@ hide
 </details>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-13">Table 4: </span>Think Of a Captaion
+<span id="tab:unnamed-chunk-12">Table 4: </span>Think Of a Captaion
 </caption>
 <thead>
 <tr>
@@ -2234,16 +2206,16 @@ Pr(&gt;|t|)
 (Intercept)
 </td>
 <td style="text-align:right;">
-28.9248
+45.5163
 </td>
 <td style="text-align:right;">
-1.0198
+12.1174
 </td>
 <td style="text-align:right;">
-28.3624
+3.7563
 </td>
 <td style="text-align:right;">
-0.0000
+0.0002
 </td>
 </tr>
 <tr>
@@ -2251,16 +2223,16 @@ Pr(&gt;|t|)
 regionEastern
 </td>
 <td style="text-align:right;">
-1.4316
+1.4344
 </td>
 <td style="text-align:right;">
-1.3326
+1.3317
 </td>
 <td style="text-align:right;">
-1.0743
+1.0771
 </td>
 <td style="text-align:right;">
-0.2831
+0.2818
 </td>
 </tr>
 <tr>
@@ -2268,13 +2240,13 @@ regionEastern
 regionNorthern
 </td>
 <td style="text-align:right;">
--16.3193
+-16.3261
 </td>
 <td style="text-align:right;">
-1.3448
+1.3439
 </td>
 <td style="text-align:right;">
--12.1349
+-12.1481
 </td>
 <td style="text-align:right;">
 0.0000
@@ -2285,55 +2257,41 @@ regionNorthern
 regionWestern
 </td>
 <td style="text-align:right;">
--5.3658
+-5.3443
 </td>
 <td style="text-align:right;">
-1.3781
+1.3773
 </td>
 <td style="text-align:right;">
--3.8936
+-3.8803
 </td>
 <td style="text-align:right;">
 0.0001
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+Years
+</td>
+<td style="text-align:right;">
+-0.0010
+</td>
+<td style="text-align:right;">
+0.0007
+</td>
+<td style="text-align:right;">
+-1.3741
+</td>
+<td style="text-align:right;">
+0.1699
+</td>
+</tr>
 </tbody>
 </table>
 </div>
-<div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-hide
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>NER</span> <span class='op'>~</span> <span class='va'>Years</span>, data <span class='op'>=</span> <span class='va'>ug_secondaryNER</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
-<pre><code>
-Call:
-lm(formula = NER ~ Years, data = ug_secondaryNER)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--23.721 -10.148  -1.721   8.035  77.791 
-
-Coefficients:
-              Estimate Std. Error t value Pr(&gt;|t|)   
-(Intercept) 40.9376975 13.9426828   2.936  0.00344 **
-Years       -0.0010345  0.0008392  -1.233  0.21810   
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 13.78 on 680 degrees of freedom
-  (68 observations deleted due to missingness)
-Multiple R-squared:  0.00223,   Adjusted R-squared:  0.0007624 
-F-statistic:  1.52 on 1 and 680 DF,  p-value: 0.2181</code></pre>
-</div>
-<p>NOw we cna look at our primary school data</p>
-<p>males are less likey to be enrolled, there is a significant difference in the enromelnt between grade levels</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>There was no real difference between the trend in GER and NER, they are both quite consistent.</p>
+<p>Our big takeways from these</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
