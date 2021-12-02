@@ -1,20 +1,25 @@
 ---
 title: "Uganda Education Statistics"
-description: |
-  A short dive into the stastics surronding Primary and secondary education in Uganda
 author:
-  - name: Allie Cole
-    url: {}
-date: 12-01-2021
+- name: Allie Cole
+  url: {}
+date: "12-01-2021"
 output:
   distill::distill_article:
-    self_contained: false
+    self_contained: no
     code_folding: hide
+  pdf_document:
+    toc: yes
+  html_document:
+    toc: yes
+    df_print: paged
+description: |
+  A short dive into the stastics surronding Primary and secondary education in Uganda
 ---
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE,}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
 #getting libraries using librarian 
 
 if (!require(librarian)){
@@ -28,22 +33,22 @@ librarian::shelf(
 
 ## Why look at education in Uganda? 
 
-This blog post is a project for my EDS222, Intro to Statistics for Environmental Data Science. I will be diving into the statistics of Ugandan school age children, and seeing if there is an correlation between the district and how likely kids are to be enrolled in school. This project is very near to me as I spent over four years living in Africa, most of that time specifically in Uganda. I lived there because my mother founded a non-profit organization in Uganda in 200X called African Women Rising that aims to empower women after war through, literacy, business skills, girls education, and agriculture. I have grown up with this in mind, and seen first hand the disparity in education systems based on region in Uganda. So to say this has always been an interest of mine is a bit of an understatement. 
+This blog post is a project for my EDS222, Intro to Statistics for Environmental Data Science. I will be diving into the statistics of Ugandan school age children, and seeing if there is an correlation between the district and how likely kids are to be enrolled in school. This project is very near to me as I spent over four years living in Africa, most of that time specifically in Uganda. I lived there because my mother founded a non-profit organization in Uganda in 2006 called African Women Rising that aims to empower women after war through, literacy, business skills, girls education, and agriculture. I have grown up with this in mind, and seen first hand the disparity in education systems based on region in Uganda. I lived that disparity as I was a child going to primary school in the capital city, at an international school, while my parents worked in areas with schools that had little to no money, resources, or teachers. So to say this has always been an interest of mine is a bit of an understatement. 
 
-### First an introduction to the situation in Uganda. 
+### First an introduction to the situation in Uganda and sub-Saharan Africa. 
 
-Despite great gains in the fight against global poverty, sub-Saharan Africa is the only region consistently failing in these attempts. Across the continent indicators on hunger, displacement, access to health, food, income and education paint a troubling picture of the situation. 
+Even though there has been great efforts, and some results in the fight against global poverty, sub-Saharan Africa is the only region consistently failing in these attempts. Across the continent indicators on hunger, displacement, access to health, food, income and education consistently fair at the bottom of global rankings. 
 
 One in four people across sub-Saharan Africa remain under nourished.
-47% of the population lives on $1.90 or less. Lack of access to food, or capital to buy food, is the main cause. Conflict often interrupts people’s ability to earn an income or grow their own food.  Environmental challenges such as erosion, desertification, deforestation, and most importantly, drought and water shortages keep people from building sustainable livelihoods.  Climate change threatens the vulnerable in disproportionate ways.
+47% of the population lives on $1.90 or less. The main cause of this is lack of access to food, or capital to buy food. Conflict often interrupts people’s ability to earn an income or grow their own food. This is made harder by the climate crisis, as it disproportionately affected vulnerable populations through challenges such as erosion, desertification, deforestation, and most importantly, drought and water shortages keep people from building sustainable livelihoods.
 
 To make matters even more complicated, Sub-Saharan Africa holds more than 26% of the world’s refugee population, of which half are children.
 
 Hosting 3.7 million refugees and 11.4 internally displaced people overwhelms already strained economies. Sub-Saharan Africa accounts for 47% of out-of-school children worldwide. Only 30% of boys and 25% of girls are enrolled in secondary school, this number drops even lower when you focus of the more rural districts. Children are kept at home due to financial difficulties, lack of schools and teachers, poor sanitary facilities at schools, social norms, household obligations in the home, child labor and child marriages. 
 
-Within Uganda specifically, there are over a million South Sudanese refugees that are crossing the border and living in Ugandan refugee camps, around 80% of these are women and children. With so many children coming into these camps, education is very difficult. It is not uncommon to see classrooms filled with multiple ages, grades and 200 students for every one teacher. My original hope for this project was to include data from these refugee camps, and compare it to the districts that do not have refugees. 
+Within Uganda specifically, there are over a million South Sudanese refugees that are crossing the border and living in Ugandan refugee camps, around 80% of these are women and children. With so many children coming into these camps, education is very difficult. It is not uncommon to see classrooms filled with multiple ages, grades and 200 students for every one teacher. My original hope for this project was to include data from these refugee camps, and compare it to the districts that do not have refugees. Unfortunately, getting raw or even cleaned data on teh refugee stats was quite difficult. None of the major NGOs working in Uganda freely share their raw data, or if they do, it is hidden in PDFs and at this time I do not have the skills to scrap them.
 
-Additionally within Uganda, 26% of the population live in urban settings and 74% live in rural settings. The rural settings tend to have less infrastructure for education. 
+Additionally within Uganda, 26% of the population live in urban settings and 74% live in rural settings. The rural settings tend to have less infrastructure for education. Most of these rural areas are in the Northern and Western regions.
 
 Knowing all of this, I was very interested in seeing if I could find some of the data myself and get similar results. I also wanted to see if there was a connection to food price and education. I separated my interests into the following questions:
 
@@ -51,12 +56,14 @@ Knowing all of this, I was very interested in seeing if I could find some of the
 
 > 2. Are there differences in male and female enrollment rates over time?
 
-> 3. Is there a difference in enrollment by district?
+> 3. Is there a difference in enrollment by district or region?
+
+> 4. Does food price have an effect on enrollment?
 
 The rest of the post will walk you through my steps and the problems I encountered. 
 
 
-## Step 1- Finding my data
+### Step 1- Finding my data
 
 This step proved to be much harder than anticipated, my original thought was that I would be able to find at least some relevant data from one of the many organizations that does work in Uganda. However, while I did find some great info graphics, figures, and statistics, none of the bigger NGOs I was looking at had any raw data I could work with. I then went to World Bank Data, World Food Program, and The Uganda Bureau of Statistics. From these sites I was able to scrape together very minimal data. 
 
@@ -124,14 +131,6 @@ ug_secondaryNER <- ug_secondaryNER_raw %>%
 
 ```
 
-```{r}
-#World Food Program Data
-```
-
-```{r}
-#combining datasets 
-```
-
 ### Second Step, Visualizing the Data
 
 Now that I found some data, I wanted to load it in R and run some very basic visualizations to see if there were any apparent trends
@@ -146,14 +145,15 @@ ggplot(data = primary, aes(x = Year, y = Number, col = Schooling)) +
     labels = scales::label_number_si()) +
    labs(x = "Year",
        y = "Total students enrolled",
-       title = "Uganda Primary School Enrollment by Year", 
-       caption = "Total enrollment rate for Primary 1 - Primary 7 (Kindergarten through 6th grade) for all of Uganda. There is a general decrease in enrollment as grade level increases")
+       title = "Uganda Primary School Enrollment by Year")
 ```
+**Figure 1. Total enrollment rate for Primary 1 - Primary 7 (Kindergarten - 6th grade) for Uganda. The general trend shows that as the grade level increases there is a decrease in the total number of students enrolled**
 
-This figure shows us the total enrollment rate for P1-P7 (Kindergarten through 6th grade) for Uganda. The general trend shows that as the grade level increases there is a decrease in the total number of students enrolled. This is consistent with trends in the literature, where in many districts as children grow older they are expected to stay home and work or take care of children. The literature states that this is even more apparent for girls. The main barrier for sending children to school is poverty, as parents are not able to afford to pay for school fees. 
-However, even in families where funds are available girls still fail to advance academically. Girls are expected to help with household chores and their irregular attendance at school leads to a failure in passing year-end exams. Not passing means they are held back and must repeat a grade. Once a girl starts menstruating lack of access to menstrual pads can lead to more days missed and before long many girls drop out completely. With few other options the trend is for girls to marry early and have children at a young age. These children are in turn less likely to complete primary education and the perpetuation of the issue continues.
 
-I was worried that the trends here would not be significant as there is only four years of data, however the trends seem to be very consistent across all four year, with very little variation. Leading me to believe that this is the true trend. 
+Figure 1 shows us the total enrollment rate for P1-P7 (Kindergarten through 6th grade) for Uganda. The general trend shows that as the grade level increases there is a decrease in the total number of students enrolled. This is consistent with trends in the literature, where in many districts as children grow older they are expected to stay home and work or take care of children. The literature states that this is even more apparent for girls. The main barrier for sending children to school is poverty, as parents are not able to afford to pay for school fees. 
+However, even in families where funds are available girls still fail to advance academically. Girls are expected to help with household chores and their irregular attendance at school leads to a failure in passing year-end exams. Not passing means they are held back and must repeat a grade. Once a girl starts menstruating lack of access to menstrual pads can lead to more days missed and before long many girls drop out completely. With few other options the trend is for girls to marry early and have children at a young age. These children are in turn less likely to complete primary education and the perpetuation of the issue continues. If we look at the figure below 
+we can start to see that, at least for this data set, this might not be true. You can see that the triangles that represent males are more typically below the circles that represent females. 
+
 
 ```{r}
 ggplot(data = primary, aes(x = Year, y = Number, col = Schooling )) +
@@ -164,9 +164,12 @@ ggplot(data = primary, aes(x = Year, y = Number, col = Schooling )) +
     labels = scales::label_number_si()) +
    labs(x = "Year",
        y = "Total students enrolled",
-       title = "Uganda Primary School Enrollment by Year ", 
-       caption = "Total enrollment rate for Primary 1 - Primary 7 (Kindergarten through 6th grade) for all of Uganda. There is a general decrease in enrollment as grade level increases")
+       title = "Uganda Primary School Enrollment by Year ")
 ```
+**Figure 2. Total enrollment rate for Primary 1 - Primary 7 (Kindergarten - 6th grade) for Uganda. The general trend shows that as the grade level increases there is a decrease in the total number of students enrolled. The added shapes represent the gender of the students.**
+
+
+I was worried that the trends here would not be significant as there is only four years of data, however the trends seem to be very consistent across all four year, with very little variation. Leading me to believe that this is the true trend. 
 
 
 The next two visualization plots show the Enrollment Rate in Secondary school by region.
@@ -178,8 +181,9 @@ ggplot(data = subset(ug_secondaryNER, !is.na(region)), aes(x = Years, y = NER, c
   theme_minimal() +
    labs(x = "Year",
        y = "Net Enrollment Rate",
-       title = "Rate of Secondary School Enrollment by Region")
+       title = "Net Rate of Secondary School Enrollment by Region")
 ```
+**Figure 3. Net rate of secondary school enrollment (NER) by region, each color represents a different region, with the Northern region consecutively having the lowest rates. The NER is the number of students of the theoretical school-age group for a given level of education, expressed as a percentage of the total population in that age group.**
 
 First we have the Net Enrollment rate, The NER is the number of students of the theoretical school-age group for a given level of education, expressed as a percentage of the total population in that age group. The theoretical maximum value is 100%. However, Net Enrollment Rates may exceed 100% due to inconsistencies between population and enrollment data, this can been seen in our 2017 data, where one district in the Northern region is slightly over 100. 
 
@@ -195,11 +199,12 @@ ggplot(data = subset(ug_secondaryGER, !is.na(region)), aes(x = Years, y = GER, c
        y = "Gross Enrollment Rate",
        title = "Rate of Secondary School Enrollment by Region")
 ```
+**Figure 4. Gross rate of secondary school enrollment (GER) by region, each color represents a different region, with the Northern region consecutively having the lowest rates.The GER is the number of pupils enrolled in a given level of education, regardless of age, expressed as a percentage of the population in the theoretical age group for the same level of education.**
+
 
 The Gross Enrollment Rate is the number of pupils enrolled in a given level of education, regardless of age, expressed as a percentage of the population in the theoretical age group for the same level of education. When compared next to the NER,  we can see how the difference between the two ratios highlights the incidence of under-aged and over-aged enrollment. While the pattern seems to have stayed very similar between the two plots, we can see that for the GER plot the y axis has increased, now it seems there are more students enrolled in each district. But as mentioned above this takes into account any students who are repeating a grade, younger than the average, or older than the average. As many students get pulled out of school for various reasons there is a trend of not passing teh end of year exams that allow them to continue on. Without proper interference this trend can form a viscous cycle, where students are held back for multiple years, and then ultimately taken out of school because their parents do not see the return on the investment of sending them. They are more valuable for the parent at home. 
 
-The second main trend we can see here is that the Northern region is much lower than the Central region. This is as expected as the Northern region is rural, and is historically lower income. The Central region is where most of the nations urban cities are, and is where teh capital city, Kampala, is. 
-
+The second main trend we can see here is that the Northern region is much lower than the Central region. This is as expected as the Northern region is rural, and is historically lower income. The Central region is where most of the nations urban cities are, and is where the capital city, Kampala, is. 
 
 
 ### Now we can start to look at some models
@@ -231,10 +236,10 @@ lm(Number ~ Schooling + Sex, data = primary)  %>%
 
 When looking at the results, we can see that there is a decrease in the intercept by almost 4,500 students every year, if you are male. This was not what I was expecting to see, as in many of my specific districts of interest this is the opposite case. However, there are two things I believe to be influencing this. The first is that this is a very small sample size, and the second is that this is data for Uganda as a whole, so some of the nuances I was hoping to look at are not available. This is also not a statically significant finding, as we fail to reject the null hypothesis that sex has no effect on schooling, as our p-value is 0.326. 
 
-Now that I knew that there are less children enrolled in the higher grade levels, I wanted to look at enrollment by district. As a reminder, the data I was able to find for this is the Gross and Net enrollment rate for secondary school (grades seven, eight, and nine) across all districts. 
+Now that I knew that there are less children enrolled in the higher grade levels, I wanted to look at enrollment by district and region to answer my third question. As a reminder, the data I was able to find for this is the Gross and Net enrollment rate for secondary school (grades seven, eight, and nine) across all districts. 
 
 ```{r}
-#will district have an affect on number of children who attend school?
+#will region have an affect on number of children who attend school?
 
  lm(GER ~ region + Years, data = ug_secondaryGER)  %>%
   summary() %>% 
@@ -243,9 +248,22 @@ Now that I knew that there are less children enrolled in the higher grade levels
   kable_styling(latex_options = "HOLD_position")
 ```
 
-As seen in the table above, every district has a significant change in the enrollment rate compared to the other regions, except for the Eastern region. 
+As seen in the table above, every region has a significant change in the enrollment rate compared to the other regions, except for the Eastern region. 
 
 I also wanted to see if year has an effect on enrollment, as we would hope that as time goes on, the overall enrollment rates increase. We we add in the year variable to the model there seems to be a slight downward trend that is almost statically significant. However, not enough to have a concrete answer. If there were more data points I would have higher confidence but considering the data, I do not want to make any broad statements. 
+
+The model below shows the GER for every district
+
+```{r}
+#will district have an affect on number of children who attend school?
+
+ lm(GER ~ District, data = ug_secondaryGER)  %>%
+  summary() %>% 
+  xtable() %>% 
+  kable(caption = "Think Of a Captaion", digits = 4) %>% 
+  kable_styling(latex_options = "HOLD_position")
+```
+And the majority of the districts all have significant p-values. 
 
 Then I decided run all the models again for the NER just to be safe, and to see if there was a difference. 
 
@@ -259,7 +277,30 @@ Then I decided run all the models again for the NER just to be safe, and to see 
 
 There was no real difference between the trend in GER and NER, they are both quite consistent. 
 
-Our big takeways from these 
+Our big takeaways from these is that there is a significant loss in enrollment as grade level increases, and that while there might be a difference in male and female enrollment, it is very small and not statically significant. Further more, there is a difference in enrollment rates between the majority of the districts and the regions overall. 
+
+To answer my fourth question, if food price has any affect on enrollment, I needed to look at the data set I found from world Food Program, however this proved to be much more difficult that originally expected, as formatting the date so that it would work with the other data set I had was incredibly difficult. I was incredibly interested in seeing this result as it is know that one of the main causes of malnutrition in Uganda is lack of access to food, or capital to buy food. And I believe this would also have an effect on school enrollment, as families are more likely to spend their money on food rather than education when money is tight. I would love to keep wrangling the data until I can figure it out and wil then update this post. (so stay tuned!)
+
+### Final Thoughts 
+
+Overall I believe that the majority of what I thought I was going to see, did happen, and there was statistical significance to back it up. 
+
+
+
+If you want to visit the repo that has all of the source code for this project click [here](https://github.com/AllieCole/EDS222_Stats_Final_Project)
+
+### References 
+
+1. [UNHCR](https://www.unhcr.org/en-us/publications/operations/5bd01fab4/assessing-needs-refugees-financial-non-financial-services-uganda.html?query=uganda)
+2. [African Women Rising](https://www.africanwomenrising.org/)
+3. [UsAID](https://www.epdc.org/sites/default/files/documents/Uganda_coreusaid.pdf)
+
+
+### Data 
+1. [Uganda Bureau of Statistics](https://www.ubos.org/explore-statistics/21/)
+2. [World Food Program](https://data.humdata.org/organization/wfp)
+
+
 
 
 
