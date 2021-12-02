@@ -31,7 +31,7 @@ librarian::shelf(
 
 ```
 
-## Why look at education in Uganda? 
+### Why look at education in Uganda? 
 
 This blog post is a project for my EDS222, Intro to Statistics for Environmental Data Science. I will be diving into the statistics of Ugandan school age children, and seeing if there is an correlation between the district and how likely kids are to be enrolled in school. This project is very near to me as I spent over four years living in Africa, most of that time specifically in Uganda. I lived there because my mother founded a non-profit organization in Uganda in 2006 called African Women Rising that aims to empower women after war through, literacy, business skills, girls education, and agriculture. I have grown up with this in mind, and seen first hand the disparity in education systems based on region in Uganda. I lived that disparity as I was a child going to primary school in the capital city, at an international school, while my parents worked in areas with schools that had little to no money, resources, or teachers. So to say this has always been an interest of mine is a bit of an understatement. 
 
@@ -283,7 +283,7 @@ To answer my fourth question, if food price has any affect on enrollment, I need
 
 ### Final Thoughts 
 
-Overall I believe that the majority of what I thought I was going to see, did happen, and there was statistical significance to back it up. 
+Overall I believe that the majority of what I thought I was going to see, did happen, and there was statistical significance to back it up. I would have liked to be able to include more data points and more information on my aeras  of interest. 
 
 
 
@@ -294,6 +294,7 @@ If you want to visit the repo that has all of the source code for this project c
 1. [UNHCR](https://www.unhcr.org/en-us/publications/operations/5bd01fab4/assessing-needs-refugees-financial-non-financial-services-uganda.html?query=uganda)
 2. [African Women Rising](https://www.africanwomenrising.org/)
 3. [UsAID](https://www.epdc.org/sites/default/files/documents/Uganda_coreusaid.pdf)
+4. [United Nations statistics divison](https://unstats.un.org/unsd/mdg/Metadata.aspx?IndicatorId=6)
 
 
 ### Data 
