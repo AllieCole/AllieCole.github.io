@@ -43,18 +43,29 @@ Hosting 3.7 million refugees and 11.4 internally displaced people overwhelms alr
 
 Within Uganda specifically, there are over a million South Sudanese refugees that are crossing the border and living in Ugandan refugee camps, around 80% of these are women and children. With so many children coming into these camps, education is very difficult. It is not uncommon to see classrooms filled with multiple ages, grades and 200 students for every one teacher. My original hope for this project was to include data from these refugee camps, and compare it to the districts that do not have refugees. 
 
- 26% of the population live in urban settings and 74% live in rural settings. 
+Additionally within Uganda, 26% of the population live in urban settings and 74% live in rural settings. The rural settings tend to have less infrastructure for education. 
 
+Knowing all of this, I was very interested in seeing if I could find some of the data myself and get similar results. I also wanted to see if there was a connection to food price and education. I separated my interests into the following questions:
 
+> 1. Is there any change in enrollment as age (or by proxy school level) increases?
 
-Knowing all of this, I was very interested in seeing if I could find some of the data myself and get similar results. I also wanted to see if there was a connection to food price and education. The rest of teh post will walk you through my steps and teh problems I encountered. 
+> 2. Are there differences in male and female enrollment rates over time?
+
+> 3. Is there a difference in enrollment by district?
+
+The rest of the post will walk you through my steps and the problems I encountered. 
 
 
 ## Step 1- Finding my data
 
 This step proved to be much harder than anticipated, my original thought was that I would be able to find at least some relevant data from one of the many organizations that does work in Uganda. However, while I did find some great info graphics, figures, and statistics, none of the bigger NGOs I was looking at had any raw data I could work with. I then went to World Bank Data, World Food Program, and The Uganda Bureau of Statistics. From these sites I was able to scrape together very minimal data. 
 
-I was able to find four years of data (2013-2016) that looks at the total number of Ugandan children, split by gender, who attend grades Primary 1 through Primary 7 respectively. Primary 1 is the same as Kindergarten, Primary 2 as first grade, and so on. Then I found a data set that had the Gross Enrollment Rate (GER), and Net Enrollment Rate for Secondary school, separated by district. 
+I was able to find four years of data (2013-2016) that looks at the total number of Ugandan children, split by gender, who attend grades Primary 1 through Primary 7 respectively. Primary 1 is the same as Kindergarten, Primary 2 as first grade, and so on. Then I found a data set that had the Gross Enrollment Rate (GER), and Net Enrollment Rate for Secondary school, separated by district. Which I then also turned into region so I could compare more broadly. 
+
+```{r}
+#primary school aged kids 
+primary <-read_csv(here("_posts", "2021-12-01-uganda-education-statistics", "data", "Primary_13-16.csv"))
+```
 
 
 ```{r}
@@ -114,11 +125,6 @@ ug_secondaryNER <- ug_secondaryNER_raw %>%
 ```
 
 ```{r}
-#primary school aged kids 
-primary <-read_csv(here("_posts", "2021-12-01-uganda-education-statistics", "data", "Primary_13-16.csv"))
-```
-
-```{r}
 #World Food Program Data
 ```
 
@@ -146,6 +152,21 @@ ggplot(data = primary, aes(x = Year, y = Number, col = Schooling)) +
 
 This figure shows us the total enrollment rate for P1-P7 (Kindergarten through 6th grade) for Uganda. The general trend shows that as the grade level increases there is a decrease in the total number of students enrolled. This is consistent with trends in the literature, where in many districts as children grow older they are expected to stay home and work or take care of children. The literature states that this is even more apparent for girls. The main barrier for sending children to school is poverty, as parents are not able to afford to pay for school fees. 
 However, even in families where funds are available girls still fail to advance academically. Girls are expected to help with household chores and their irregular attendance at school leads to a failure in passing year-end exams. Not passing means they are held back and must repeat a grade. Once a girl starts menstruating lack of access to menstrual pads can lead to more days missed and before long many girls drop out completely. With few other options the trend is for girls to marry early and have children at a young age. These children are in turn less likely to complete primary education and the perpetuation of the issue continues.
+
+I was worried that the trends here would not be significant as there is only four years of data, however the trends seem to be very consistent across all four year, with very little variation. Leading me to believe that this is the true trend. 
+
+```{r}
+ggplot(data = primary, aes(x = Year, y = Number, col = Schooling )) +
+  geom_point(aes(shape=Sex, color=Schooling)) +
+  theme_minimal() +
+  scale_y_log10(
+    "Total students enrolled",
+    labels = scales::label_number_si()) +
+   labs(x = "Year",
+       y = "Total students enrolled",
+       title = "Uganda Primary School Enrollment by Year ", 
+       caption = "Total enrollment rate for Primary 1 - Primary 7 (Kindergarten through 6th grade) for all of Uganda. There is a general decrease in enrollment as grade level increases")
+```
 
 
 The next two visualization plots show the Enrollment Rate in Secondary school by region.
@@ -177,18 +198,42 @@ ggplot(data = subset(ug_secondaryGER, !is.na(region)), aes(x = Years, y = GER, c
 
 The Gross Enrollment Rate is the number of pupils enrolled in a given level of education, regardless of age, expressed as a percentage of the population in the theoretical age group for the same level of education. When compared next to the NER,  we can see how the difference between the two ratios highlights the incidence of under-aged and over-aged enrollment. While the pattern seems to have stayed very similar between the two plots, we can see that for the GER plot the y axis has increased, now it seems there are more students enrolled in each district. But as mentioned above this takes into account any students who are repeating a grade, younger than the average, or older than the average. As many students get pulled out of school for various reasons there is a trend of not passing teh end of year exams that allow them to continue on. Without proper interference this trend can form a viscous cycle, where students are held back for multiple years, and then ultimately taken out of school because their parents do not see the return on the investment of sending them. They are more valuable for the parent at home. 
 
-The second main trend we can see here is that the Northen region is much lower than 
+The second main trend we can see here is that the Northern region is much lower than the Central region. This is as expected as the Northern region is rural, and is historically lower income. The Central region is where most of the nations urban cities are, and is where teh capital city, Kampala, is. 
 
 
 
 ### Now we can start to look at some models
 
-First I wanted to know how strong the visual trend of school enrollment by district was. To do this 
+
+First I wanted to look at the Primary school data, to answer my first question, is there any change in enrollment as age (or by proxy school level) increases? To do this I created a model that looked to see if there was a significant change in enrollment as schooling increased.
+
+
+```{r}
+ lm(Number ~ Schooling, data = primary)  %>% 
+  summary() %>% 
+  xtable() %>% 
+  kable(caption = "Effect of Grade level on total Enrollment", digits = 4)
+```
+
+For every year there was a significant decrease in the number of students enrolled, holding all other grade levels constant. The intercept here is Kindergarten, Where you start with an average of 943393 kids enrolled, and then as you increase by one year you can see that enrollment rates drop as you hold each grade level constant, at a decreasing rate. The adjusted r-squared value for this is 99%, which states that or model is explaining a lot of the data, however I am skeptical as this is a very small data set and I know there has to be more effecting the total enrollment, not just the grade level. 
+
+To take this a step further and start looking at my second question, are there differences in male and female enrollment rates over time? I added a gender variable to this model. 
+
+
+```{r}
+lm(Number ~ Schooling + Sex, data = primary)  %>% 
+  summary() %>% 
+  xtable() %>% 
+  kable(caption = "Effect of Grade level on total Enrollment", digits = 4)
+```
+When looking at the results, we can see that there is a decrease in the intercept by almost 4,500 students every year, if you are male. This was not what I was expecting to see, as in many of my specific districts of interest this is the opposite case. However, there are two things I believe to be influencing this. The first is that this is a very small sample size, and the second is that this is data for Uganda as a whole, so some of the nuances I was hoping to look at are not available. This is also not a statically significant finding, as we fail to reject the null hypothesis that sex has no effect on schooling, as our p-value is 0.326. 
+
+Now that I knew that there are less children enrolled in the higher grade levels, I wanted to look at enrollment by district. As a reminder, the data I was able to find for this is the Gross and Net enrollment rate for secondary school (grades seven, eight, and nine) across districts. 
 
 ```{r}
 #will district have an affect on number of children who attend school?
 
- lm(GER ~ region, data = ug_secondaryGER)  %>%
+ lm(GER ~ region + Years, data = ug_secondaryGER)  %>%
   summary() %>% 
   xtable() %>% 
   kable(caption = "Think Of a Captaion", digits = 4) %>% 
@@ -223,13 +268,6 @@ lm(NER ~ Years, data = ug_secondaryNER) %>%
 
 NOw we cna look at our primary school data
 
-```{r}
-
- lm(Number ~ Sex + Schooling, data = primary)  %>% 
-  summary() %>% 
-  xtable() %>% 
-  kable(caption = "Think Of a Captaion", digits = 4)
-```
 
 males are less likey to be enrolled, there is a significant difference in the enromelnt between grade levels 
 

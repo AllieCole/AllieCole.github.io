@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/Primary_13-16.csv","data/Secondary_GER_Rates.csv","data/Secondary_NER_Rates.csv","data/wfp_food_prices_uga.csv","uganda-education-statistics_files/anchor-4.2.2/anchor.min.js","uganda-education-statistics_files/bowser-1.9.3/bowser.min.js","uganda-education-statistics_files/distill-2.2.21/template.v2.js","uganda-education-statistics_files/figure-html5/unnamed-chunk-5-1.png","uganda-education-statistics_files/figure-html5/unnamed-chunk-6-1.png","uganda-education-statistics_files/figure-html5/unnamed-chunk-7-1.png","uganda-education-statistics_files/header-attrs-2.10/header-attrs.js","uganda-education-statistics_files/jquery-1.11.3/jquery.min.js","uganda-education-statistics_files/popper-2.6.0/popper.min.js","uganda-education-statistics_files/tippy-6.2.7/tippy-bundle.umd.min.js","uganda-education-statistics_files/tippy-6.2.7/tippy-light-border.css","uganda-education-statistics_files/tippy-6.2.7/tippy.css","uganda-education-statistics_files/tippy-6.2.7/tippy.umd.min.js","uganda-education-statistics_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/Primary_13-16.csv","data/Secondary_GER_Rates.csv","data/Secondary_NER_Rates.csv","data/wfp_food_prices_uga.csv","uganda-education-statistics_files/anchor-4.2.2/anchor.min.js","uganda-education-statistics_files/bowser-1.9.3/bowser.min.js","uganda-education-statistics_files/distill-2.2.21/template.v2.js","uganda-education-statistics_files/figure-html5/unnamed-chunk-5-1.png","uganda-education-statistics_files/figure-html5/unnamed-chunk-6-1.png","uganda-education-statistics_files/figure-html5/unnamed-chunk-7-1.png","uganda-education-statistics_files/figure-html5/unnamed-chunk-8-1.png","uganda-education-statistics_files/header-attrs-2.10/header-attrs.js","uganda-education-statistics_files/jquery-1.11.3/jquery.min.js","uganda-education-statistics_files/kePrint-0.0.1/kePrint.js","uganda-education-statistics_files/lightable-0.0.1/lightable.css","uganda-education-statistics_files/popper-2.6.0/popper.min.js","uganda-education-statistics_files/tippy-6.2.7/tippy-bundle.umd.min.js","uganda-education-statistics_files/tippy-6.2.7/tippy-light-border.css","uganda-education-statistics_files/tippy-6.2.7/tippy.css","uganda-education-statistics_files/tippy-6.2.7/tippy.umd.min.js","uganda-education-statistics_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2418,11 +2418,39 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>To make matters even more complicated, Sub-Saharan Africa holds more than 26% of the world’s refugee population, of which half are children.</p>
 <p>Hosting 3.7 million refugees and 11.4 internally displaced people overwhelms already strained economies. Sub-Saharan Africa accounts for 47% of out-of-school children worldwide. Only 30% of boys and 25% of girls are enrolled in secondary school, this number drops even lower when you focus of the more rural districts. Children are kept at home due to financial difficulties, lack of schools and teachers, poor sanitary facilities at schools, social norms, household obligations in the home, child labor and child marriages.</p>
 <p>Within Uganda specifically, there are over a million South Sudanese refugees that are crossing the border and living in Ugandan refugee camps, around 80% of these are women and children. With so many children coming into these camps, education is very difficult. It is not uncommon to see classrooms filled with multiple ages, grades and 200 students for every one teacher. My original hope for this project was to include data from these refugee camps, and compare it to the districts that do not have refugees.</p>
-<p>26% of the population live in urban settings and 74% live in rural settings.</p>
-<p>Knowing all of this, I was very interested in seeing if I could find some of the data myself and get similar results. I also wanted to see if there was a connection to food price and education. The rest of teh post will walk you through my steps and teh problems I encountered.</p>
+<p>Additionally within Uganda, 26% of the population live in urban settings and 74% live in rural settings. The rural settings tend to have less infrastructure for education.</p>
+<p>Knowing all of this, I was very interested in seeing if I could find some of the data myself and get similar results. I also wanted to see if there was a connection to food price and education. I separated my interests into the following questions:</p>
+<blockquote>
+<ol type="1">
+<li>Is there any change in enrollment as age (or by proxy school level) increases?</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2" type="1">
+<li>Are there differences in male and female enrollment rates over time?</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3" type="1">
+<li>Is there a difference in enrollment by district?</li>
+</ol>
+</blockquote>
+<p>The rest of the post will walk you through my steps and the problems I encountered.</p>
 <h2 id="step-1--finding-my-data">Step 1- Finding my data</h2>
 <p>This step proved to be much harder than anticipated, my original thought was that I would be able to find at least some relevant data from one of the many organizations that does work in Uganda. However, while I did find some great info graphics, figures, and statistics, none of the bigger NGOs I was looking at had any raw data I could work with. I then went to World Bank Data, World Food Program, and The Uganda Bureau of Statistics. From these sites I was able to scrape together very minimal data.</p>
-<p>I was able to find four years of data (2013-2016) that looks at the total number of Ugandan children, split by gender, who attend grades Primary 1 through Primary 7 respectively. Primary 1 is the same as Kindergarten, Primary 2 as first grade, and so on. Then I found a data set that had the Gross Enrollment Rate (GER), and Net Enrollment Rate for Secondary school, separated by district.</p>
+<p>I was able to find four years of data (2013-2016) that looks at the total number of Ugandan children, split by gender, who attend grades Primary 1 through Primary 7 respectively. Primary 1 is the same as Kindergarten, Primary 2 as first grade, and so on. Then I found a data set that had the Gross Enrollment Rate (GER), and Net Enrollment Rate for Secondary school, separated by district. Which I then also turned into region so I could compare more broadly.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#primary school aged kids </span>
+<span class='va'>primary</span> <span class='op'>&lt;-</span><span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'>here</span><span class='op'>(</span><span class='st'>"_posts"</span>, <span class='st'>"2021-12-01-uganda-education-statistics"</span>, <span class='st'>"data"</span>, <span class='st'>"Primary_13-16.csv"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
@@ -2491,18 +2519,6 @@ hide
 hide
 </summary>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#primary school aged kids </span>
-<span class='va'>primary</span> <span class='op'>&lt;-</span><span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'>here</span><span class='op'>(</span><span class='st'>"_posts"</span>, <span class='st'>"2021-12-01-uganda-education-statistics"</span>, <span class='st'>"data"</span>, <span class='st'>"Primary_13-16.csv"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-hide
-</summary>
-<div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#World Food Program Data</span>
 </code></pre>
 </div>
@@ -2544,6 +2560,28 @@ hide
 <p><img src="uganda-education-statistics_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <p>This figure shows us the total enrollment rate for P1-P7 (Kindergarten through 6th grade) for Uganda. The general trend shows that as the grade level increases there is a decrease in the total number of students enrolled. This is consistent with trends in the literature, where in many districts as children grow older they are expected to stay home and work or take care of children. The literature states that this is even more apparent for girls. The main barrier for sending children to school is poverty, as parents are not able to afford to pay for school fees. However, even in families where funds are available girls still fail to advance academically. Girls are expected to help with household chores and their irregular attendance at school leads to a failure in passing year-end exams. Not passing means they are held back and must repeat a grade. Once a girl starts menstruating lack of access to menstrual pads can lead to more days missed and before long many girls drop out completely. With few other options the trend is for girls to marry early and have children at a young age. These children are in turn less likely to complete primary education and the perpetuation of the issue continues.</p>
+<p>I was worried that the trends here would not be significant as there is only four years of data, however the trends seem to be very consistent across all four year, with very little variation. Leading me to believe that this is the true trend.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>primary</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Year</span>, y <span class='op'>=</span> <span class='va'>Number</span>, col <span class='op'>=</span> <span class='va'>Schooling</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>shape<span class='op'>=</span><span class='va'>Sex</span>, color<span class='op'>=</span><span class='va'>Schooling</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_y_log10</span><span class='op'>(</span>
+    <span class='st'>"Total students enrolled"</span>,
+    labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/label_number_si.html'>label_number_si</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+   <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Year"</span>,
+       y <span class='op'>=</span> <span class='st'>"Total students enrolled"</span>,
+       title <span class='op'>=</span> <span class='st'>"Uganda Primary School Enrollment by Year "</span>, 
+       caption <span class='op'>=</span> <span class='st'>"Total enrollment rate for Primary 1 - Primary 7 (Kindergarten through 6th grade) for all of Uganda. There is a general decrease in enrollment as grade level increases"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="uganda-education-statistics_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
 <p>The next two visualization plots show the Enrollment Rate in Secondary school by region.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
@@ -2561,7 +2599,7 @@ hide
 </code></pre>
 </div>
 </details>
-<p><img src="uganda-education-statistics_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+<p><img src="uganda-education-statistics_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
 <p>First we have the Net Enrollment rate, The NER is the number of students of the theoretical school-age group for a given level of education, expressed as a percentage of the total population in that age group. The theoretical maximum value is 100%. However, Net Enrollment Rates may exceed 100% due to inconsistencies between population and enrollment data, this can been seen in our 2017 data, where one district in the Northern region is slightly over 100.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2581,31 +2619,28 @@ hide
 </code></pre>
 </div>
 </details>
-<p><img src="uganda-education-statistics_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+<p><img src="uganda-education-statistics_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
 </div>
 <p>The Gross Enrollment Rate is the number of pupils enrolled in a given level of education, regardless of age, expressed as a percentage of the population in the theoretical age group for the same level of education. When compared next to the NER, we can see how the difference between the two ratios highlights the incidence of under-aged and over-aged enrollment. While the pattern seems to have stayed very similar between the two plots, we can see that for the GER plot the y axis has increased, now it seems there are more students enrolled in each district. But as mentioned above this takes into account any students who are repeating a grade, younger than the average, or older than the average. As many students get pulled out of school for various reasons there is a trend of not passing teh end of year exams that allow them to continue on. Without proper interference this trend can form a viscous cycle, where students are held back for multiple years, and then ultimately taken out of school because their parents do not see the return on the investment of sending them. They are more valuable for the parent at home.</p>
-<p>The second main trend we can see here is that the Northen region is much lower than</p>
+<p>The second main trend we can see here is that the Northern region is much lower than the Central region. This is as expected as the Northern region is rural, and is historically lower income. The Central region is where most of the nations urban cities are, and is where teh capital city, Kampala, is.</p>
 <h3 id="now-we-can-start-to-look-at-some-models">Now we can start to look at some models</h3>
-<p>First I wanted to know how strong the visual trend of school enrollment by district was. To do this</p>
+<p>First I wanted to look at the Primary school data, to answer my first question, is there any change in enrollment as age (or by proxy school level) increases? To do this I created a model that looked to see if there was a significant change in enrollment as schooling increased.</p>
 <div class="layout-chunk" data-layout="l-body">
 <details>
 <summary>
 hide
 </summary>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#will district have an affect on number of children who attend school?</span>
-
- <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>GER</span> <span class='op'>~</span> <span class='va'>region</span>, data <span class='op'>=</span> <span class='va'>ug_secondaryGER</span><span class='op'>)</span>  <span class='op'>%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r"> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Number</span> <span class='op'>~</span> <span class='va'>Schooling</span>, data <span class='op'>=</span> <span class='va'>primary</span><span class='op'>)</span>  <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>xtable</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Think Of a Captaion"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>kable_styling</span><span class='op'>(</span>latex_options <span class='op'>=</span> <span class='st'>"HOLD_position"</span><span class='op'>)</span>
+  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Effect of Grade level on total Enrollment"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
 </code></pre>
 </div>
 </details>
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table>
 <caption>
-<span id="tab:unnamed-chunk-8">Table 1: </span>Think Of a Captaion
+<span id="tab:unnamed-chunk-9">Table 1: </span>Effect of Grade level on total Enrollment
 </caption>
 <thead>
 <tr>
@@ -2631,13 +2666,353 @@ Pr(&gt;|t|)
 (Intercept)
 </td>
 <td style="text-align:right;">
-31.7143
+943393.1
 </td>
 <td style="text-align:right;">
-1.1355
+5925.705
 </td>
 <td style="text-align:right;">
-27.9293
+159.2035
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP2
+</td>
+<td style="text-align:right;">
+-282412.5
+</td>
+<td style="text-align:right;">
+8380.212
+</td>
+<td style="text-align:right;">
+-33.6999
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP3
+</td>
+<td style="text-align:right;">
+-279910.0
+</td>
+<td style="text-align:right;">
+8380.212
+</td>
+<td style="text-align:right;">
+-33.4013
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP4
+</td>
+<td style="text-align:right;">
+-283728.1
+</td>
+<td style="text-align:right;">
+8380.212
+</td>
+<td style="text-align:right;">
+-33.8569
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP5
+</td>
+<td style="text-align:right;">
+-371490.0
+</td>
+<td style="text-align:right;">
+8380.212
+</td>
+<td style="text-align:right;">
+-44.3294
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP6
+</td>
+<td style="text-align:right;">
+-475472.5
+</td>
+<td style="text-align:right;">
+8380.212
+</td>
+<td style="text-align:right;">
+-56.7375
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP7
+</td>
+<td style="text-align:right;">
+-641661.8
+</td>
+<td style="text-align:right;">
+8380.212
+</td>
+<td style="text-align:right;">
+-76.5687
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For every year there was a significant decrease in the number of students enrolled, holding all other grade levels constant. The intercept here is Kindergarten, Where you start with an average of 943393 kids enrolled, and then as you increase by one year you can see that enrollment rates drop as you hold each grade level constant, at a decreasing rate. The adjusted r-squared value for this is 99%, which states that or model is explaining a lot of the data, however I am skeptical as this is a very small data set and I know there has to be more effecting the total enrollment, not just the grade level.</p>
+<p>To take this a step further and start looking at my second question, are there differences in male and female enrollment rates over time? I added a gender variable to this model.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Number</span> <span class='op'>~</span> <span class='va'>Schooling</span> <span class='op'>+</span> <span class='va'>Sex</span>, data <span class='op'>=</span> <span class='va'>primary</span><span class='op'>)</span>  <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>xtable</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Effect of Grade level on total Enrollment"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-10">Table 2: </span>Effect of Grade level on total Enrollment
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+945615.9
+</td>
+<td style="text-align:right;">
+6335.841
+</td>
+<td style="text-align:right;">
+149.2487
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP2
+</td>
+<td style="text-align:right;">
+-282412.5
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-33.6946
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP3
+</td>
+<td style="text-align:right;">
+-279910.0
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-33.3961
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP4
+</td>
+<td style="text-align:right;">
+-283728.1
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-33.8516
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP5
+</td>
+<td style="text-align:right;">
+-371490.0
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-44.3225
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP6
+</td>
+<td style="text-align:right;">
+-475472.5
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-56.7286
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SchoolingP7
+</td>
+<td style="text-align:right;">
+-641661.8
+</td>
+<td style="text-align:right;">
+8381.529
+</td>
+<td style="text-align:right;">
+-76.5566
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SexMale
+</td>
+<td style="text-align:right;">
+-4445.5
+</td>
+<td style="text-align:right;">
+4480.116
+</td>
+<td style="text-align:right;">
+-0.9923
+</td>
+<td style="text-align:right;">
+0.326
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When looking at the results, we can see that there is a decrease in the intercept by almost 4,500 students every year, if you are male. This was not what I was expecting to see, as in many of my specific districts of interest this is the opposite case. However, there are two things I believe to be influencing this. The first is that this is a very small sample size, and the second is that this is data for Uganda as a whole, so some of the nuances I was hoping to look at are not available. This is also not a statically significant finding, as we fail to reject the null hypothesis that sex has no effect on schooling, as our p-value is 0.326.</p>
+<p>Now that I knew that there are less children enrolled in the higher grade levels, I wanted to look at enrollment by district. As a reminder, the data I was able to find for this is the Gross and Net enrollment rate for secondary school (grades seven, eight, and nine) across districts.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#will district have an affect on number of children who attend school?</span>
+
+ <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>GER</span> <span class='op'>~</span> <span class='va'>region</span> <span class='op'>+</span> <span class='va'>Years</span>, data <span class='op'>=</span> <span class='va'>ug_secondaryGER</span><span class='op'>)</span>  <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>xtable</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Think Of a Captaion"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>kable_styling</span><span class='op'>(</span>latex_options <span class='op'>=</span> <span class='st'>"HOLD_position"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-11">Table 3: </span>Think Of a Captaion
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+57.1786
+</td>
+<td style="text-align:right;">
+13.4745
+</td>
+<td style="text-align:right;">
+4.2435
 </td>
 <td style="text-align:right;">
 0.0000
@@ -2648,16 +3023,16 @@ Pr(&gt;|t|)
 regionEastern
 </td>
 <td style="text-align:right;">
-2.6687
+2.6731
 </td>
 <td style="text-align:right;">
-1.4838
+1.4809
 </td>
 <td style="text-align:right;">
-1.7986
+1.8051
 </td>
 <td style="text-align:right;">
-0.0725
+0.0715
 </td>
 </tr>
 <tr>
@@ -2665,13 +3040,13 @@ regionEastern
 regionNorthern
 </td>
 <td style="text-align:right;">
--17.0810
+-17.0915
 </td>
 <td style="text-align:right;">
-1.4974
+1.4944
 </td>
 <td style="text-align:right;">
--11.4073
+-11.4367
 </td>
 <td style="text-align:right;">
 0.0000
@@ -2682,16 +3057,33 @@ regionNorthern
 regionWestern
 </td>
 <td style="text-align:right;">
--4.5901
+-4.5571
 </td>
 <td style="text-align:right;">
-1.5345
+1.5315
 </td>
 <td style="text-align:right;">
--2.9913
+-2.9755
 </td>
 <td style="text-align:right;">
-0.0029
+0.0030
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Years
+</td>
+<td style="text-align:right;">
+-0.0015
+</td>
+<td style="text-align:right;">
+0.0008
+</td>
+<td style="text-align:right;">
+-1.8965
+</td>
+<td style="text-align:right;">
+0.0583
 </td>
 </tr>
 </tbody>
@@ -2746,7 +3138,7 @@ hide
 </details>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-10">Table 2: </span>Think Of a Captaion
+<span id="tab:unnamed-chunk-13">Table 4: </span>Think Of a Captaion
 </caption>
 <thead>
 <tr>
@@ -2870,181 +3262,6 @@ Multiple R-squared:  0.00223,   Adjusted R-squared:  0.0007624
 F-statistic:  1.52 on 1 and 680 DF,  p-value: 0.2181</code></pre>
 </div>
 <p>NOw we cna look at our primary school data</p>
-<div class="layout-chunk" data-layout="l-body">
-<details>
-<summary>
-hide
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Number</span> <span class='op'>~</span> <span class='va'>Sex</span> <span class='op'>+</span> <span class='va'>Schooling</span>, data <span class='op'>=</span> <span class='va'>primary</span><span class='op'>)</span>  <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>xtable</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>kable</span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Think Of a Captaion"</span>, digits <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
-<table>
-<caption>
-<span id="tab:unnamed-chunk-12">Table 3: </span>Think Of a Captaion
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-Estimate
-</th>
-<th style="text-align:right;">
-Std. Error
-</th>
-<th style="text-align:right;">
-t value
-</th>
-<th style="text-align:right;">
-Pr(&gt;|t|)
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-(Intercept)
-</td>
-<td style="text-align:right;">
-945615.9
-</td>
-<td style="text-align:right;">
-6335.841
-</td>
-<td style="text-align:right;">
-149.2487
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SexMale
-</td>
-<td style="text-align:right;">
--4445.5
-</td>
-<td style="text-align:right;">
-4480.116
-</td>
-<td style="text-align:right;">
--0.9923
-</td>
-<td style="text-align:right;">
-0.326
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SchoolingP2
-</td>
-<td style="text-align:right;">
--282412.5
-</td>
-<td style="text-align:right;">
-8381.529
-</td>
-<td style="text-align:right;">
--33.6946
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SchoolingP3
-</td>
-<td style="text-align:right;">
--279910.0
-</td>
-<td style="text-align:right;">
-8381.529
-</td>
-<td style="text-align:right;">
--33.3961
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SchoolingP4
-</td>
-<td style="text-align:right;">
--283728.1
-</td>
-<td style="text-align:right;">
-8381.529
-</td>
-<td style="text-align:right;">
--33.8516
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SchoolingP5
-</td>
-<td style="text-align:right;">
--371490.0
-</td>
-<td style="text-align:right;">
-8381.529
-</td>
-<td style="text-align:right;">
--44.3225
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SchoolingP6
-</td>
-<td style="text-align:right;">
--475472.5
-</td>
-<td style="text-align:right;">
-8381.529
-</td>
-<td style="text-align:right;">
--56.7286
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-SchoolingP7
-</td>
-<td style="text-align:right;">
--641661.8
-</td>
-<td style="text-align:right;">
-8381.529
-</td>
-<td style="text-align:right;">
--76.5566
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-</tbody>
-</table>
-</div>
 <p>males are less likey to be enrolled, there is a significant difference in the enromelnt between grade levels</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
