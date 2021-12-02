@@ -6,14 +6,14 @@
       "description": "Some additional details about the website",
       "author": [],
       "contents": "\nHey friends! lets see if I can push this? I am gonna try now that we have a new token\n\n\n\n",
-      "last_modified": "2021-12-02T12:01:09-08:00"
+      "last_modified": "2021-12-02T12:11:38-08:00"
     },
     {
       "path": "blog.html",
       "title": "My Blog",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-12-02T12:01:09-08:00"
+      "last_modified": "2021-12-02T12:11:38-08:00"
     },
     {
       "path": "CV.html",
@@ -21,14 +21,14 @@
       "description": "Work Experience ",
       "author": [],
       "contents": "\n\n\nggplot(data = diamonds, aes(x = carat, y = price)) +\n  geom_point(aes(color = price))\n\n\n\n\nEducation\nBren School | UCSB | Santa Barbara, California M.S., Environmental Data Science, Expected Graduation June 2022\nBoston University | Boston, Massachusetts B.A., Marine Sciences, May 2021\nSanta Barbara Senior High School | Santa Barbara, California High School Diploma, June 2017\nPublications\nRotjan, R.D., N.E. Ray, B.R.C. Kennedy, I. Cole, I.F. Trumble, G. McCarthy, K. Castro, A. Bhardwaj, M. Edens, I. Karageorge, C. Klawon, H. Kruh-Needleman, R. Perez, C. Roberts, A. Volk, J. Torres, and J. Morey. Indirect indications of dietary shifts following climate-induced disturbance on a coral reef. In preparation for submission to the Marine Ecology Progress Series.\nCole, I., E. Martin, J. Jaskiel, C. Hernandez, J. Witting, J. Llopiz, and R.D. Rotjan. Studying Global Change in a Natural Climate Laboratory: Are Larval Fishes Exhibiting a Distribution Shift in Response to ENSO Events? *= co-first authors. In preparation for submission to Science of the Total Environment.\nResearch Experience\nResearch Assistant | Work-Study | Rotjan Marine Ecology Lab | Boston University 09 2018 – Present http://sites.bu.edu/rotjanlab/members/ 20+ hours a week -Examine deep sea, open ocean, and coral reef fish larvae in the Phoenix Islands Protected Area as part of a 10-year project determining how community assemblages shift with ENSO cycles (~45 fish taxa and 28 invertebrate taxa) -Maintain temperate and tropical aquarium systems. Including husbandry of corals, anemones, and mantis shrimp, water quality testing/monitoring, feeding, and cleaning -Mentor fellow undergraduates in husbandry and lab protocols as they began doing research, and how use the microscopes, sort zooplankton, and identify larval fish -Present my work at Rotjan Lab meetings, help to edit and write manuscripts for submission to peer-reviewed journals\n\n\n\n",
-      "last_modified": "2021-12-02T12:01:12-08:00"
+      "last_modified": "2021-12-02T12:11:40-08:00"
     },
     {
       "path": "index.html",
       "title": "Allie Cole",
       "author": [],
       "contents": "\n\n          \n          \n          My Website\n          \n          \n          CV\n          Blog\n          ☰\n          \n          \n      \n        \n          \n            Allie Cole\n          \n          \n            \n              Hello! My name is Allie Cole (she/her), and I am a marine scientist who loves to dive and explore the oceans. I graduated from Boston University in 2021 with a bachelor’s degree in Marine Science. At BU, my research was exploring how larval fish distributions are changing with climate patterns. I taught a team of eight students how to identify larval fish and plankton and worked with multiple international collaborators. I was the recipient of the Lara Vincent Undergraduate Research Award for this research. You can see a summary video of the data collection here. Analysis of this data led me to UCSB’s Bren School of Environmental Sciences and Management, where I am currently working towards a Masters in Environmental Data Science.\n              Turning my raw data into understandable results was an incredibly interesting process and one I want to become very comfortable in. I am interested in bridging the gap between research and data analysis, making data more open and accessible. Eventually, I would like to be asking questions within marine ecology and using the knowledge gained in my master’s program to share the answers I find.\n            \n            \n              Hello! My name is Allie Cole (she/her), and I am a marine scientist who loves to dive and explore the oceans. I graduated from Boston University in 2021 with a bachelor’s degree in Marine Science. At BU, my research was exploring how larval fish distributions are changing with climate patterns. I taught a team of eight students how to identify larval fish and plankton and worked with multiple international collaborators. I was the recipient of the Lara Vincent Undergraduate Research Award for this research. You can see a summary video of the data collection here. Analysis of this data led me to UCSB’s Bren School of Environmental Sciences and Management, where I am currently working towards a Masters in Environmental Data Science.\n              Turning my raw data into understandable results was an incredibly interesting process and one I want to become very comfortable in. I am interested in bridging the gap between research and data analysis, making data more open and accessible. Eventually, I would like to be asking questions within marine ecology and using the knowledge gained in my master’s program to share the answers I find.\n            \n          \n\n          \n            \n              \n                  \n                    \n                      LinkedIn\n                    \n                  \n                \n                                \n                  \n                    \n                      Twitter\n                    \n                  \n                \n                                \n                  \n                    \n                      GitHub\n                    \n                  \n                \n                              \n          \n\n          \n            \n              \n                                \n                  \n                    LinkedIn\n                  \n                \n                                \n                  \n                    Twitter\n                  \n                \n                                \n                  \n                    GitHub\n                  \n                \n                              \n            \n          \n        \n      \n    \n\n    \n    \n    ",
-      "last_modified": "2021-12-02T12:01:12-08:00"
+      "last_modified": "2021-12-02T12:11:41-08:00"
     }
   ],
   "collections": ["posts/posts.json"]
