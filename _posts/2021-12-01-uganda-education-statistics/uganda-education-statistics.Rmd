@@ -1,15 +1,15 @@
 ---
-title: "Uganda Education Statistics"
+title: "Ugandan Education Statistics"
 author:
 - name: Allie Cole
   url: {}
 date: "12-01-2021"
 output:
+  pdf_document:
+    toc: yes
   distill::distill_article:
     self_contained: no
     code_folding: hide
-  pdf_document:
-    toc: yes
   html_document:
     toc: yes
     df_print: paged
