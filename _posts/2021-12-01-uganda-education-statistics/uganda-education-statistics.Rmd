@@ -241,7 +241,7 @@ Now that I knew that there are less children enrolled in the higher grade levels
 ```{r}
 #will region have an affect on number of children who attend school?
 
- lm(GER ~ region + Years, data = ug_secondaryGER)  %>%
+ lm(GER ~ region, data = ug_secondaryGER)  %>%
   summary() %>% 
   xtable() %>% 
   kable(caption = "Effect of region on enrollment", digits = 4) %>% 

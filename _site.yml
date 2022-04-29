@@ -1,10 +1,12 @@
 name: "AllieCole.github.io"
-title: "My Website"
+title: "Allie Cole"
 description: |
   My Website
 output_dir: "docs"
 navbar:
   right:
+    - text: "About"
+      href: about.html
     - text: "CV"
       href: CV.html
     - text: "Blog"
